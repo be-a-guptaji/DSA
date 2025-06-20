@@ -72,7 +72,7 @@ public class _217_Contains_Duplicate {
         return false;
     }
 
-    // Main method to test twoSum
+    // Main method to test containsDuplicate
     public static void main(String[] args) {
         int[] nums = { 1, 2, 3, 1 };
 
