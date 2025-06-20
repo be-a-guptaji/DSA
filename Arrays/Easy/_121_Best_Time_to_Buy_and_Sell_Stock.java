@@ -65,7 +65,7 @@ public class _121_Best_Time_to_Buy_and_Sell_Stock {
         return maxProfit;
     }
 
-    // Main method to test twoSum
+    // Main method to test maxProfit
     public static void main(String[] args) {
         int[] prices = { 2, 7, 11, 15 };
 
