@@ -1,5 +1,5 @@
 /*
-LeetCode Problem: https://leetcode.com/problems/valid-palindrome/description/
+LeetCode Problem: https://leetcode.com/problems/valid-palindrome/
 
 Question: 125. Valid Palindrome
 
