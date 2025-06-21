@@ -52,7 +52,7 @@ public class _242_Valid_Anagram {
         // Check if all counts are zero
         for (int c : count) {
             if (c != 0) {
-                return false; // Mismatch found
+                return false; // Mismatch found return false
             }
         }
 
