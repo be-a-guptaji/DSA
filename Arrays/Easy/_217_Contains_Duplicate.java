@@ -51,7 +51,7 @@ Space Complexity: O(n), In the worst case (no duplicates), we store all n elemen
 package Arrays.Easy;
 
 public class _217_Contains_Duplicate {
-    // Method to find duplicates
+    // Method to find duplicates in the array
     public static boolean containsDuplicate(int[] nums) {
         // Use a hashset to store number
         java.util.Set<Integer> map = new java.util.HashSet<>();
