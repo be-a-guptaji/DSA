@@ -65,7 +65,7 @@ public class _1_Two_Sum {
             map.put(nums[i], i);
         }
 
-        // If no solution found, return null or throw an exception
+        // If no solution found, return null
         return null;
     }
 
