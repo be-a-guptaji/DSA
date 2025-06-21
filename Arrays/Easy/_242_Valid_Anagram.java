@@ -21,14 +21,13 @@ Follow up: What if the inputs contain Unicode characters? How would you adapt yo
 */
 
 /*
-Approach:
-Check if lengths are equal. If not, return false immediately.
+Approach: Check if lengths are equal. If not, return false immediately.
 Convert strings to character arrays and sort them.
 Compare sorted arrays character by character.
 If all match, return true, else false.
 
 Time Complexity: O(n), where n = length of the strings.
-Space Complexity: 	O(1), fixed-size array of length 26.
+Space Complexity: O(1), fixed-size array of length 26.
 */
 
 package Arrays.Easy;
