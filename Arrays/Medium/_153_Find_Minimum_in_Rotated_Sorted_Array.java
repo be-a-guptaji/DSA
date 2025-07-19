@@ -1,35 +1,40 @@
 /*
-LeetCode Problem: https://leetcode.com/problems/search-in-rotated-sorted-array/
+LeetCode Problem: https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
 
-Question: 33. Search in Rotated Sorted Array
+Question: 153. Find Minimum in Rotated Sorted Array
 
-Problem Statement: There is an integer array nums sorted in ascending order (with distinct values).
+Problem Statement: Suppose an array of length n sorted in ascending order is rotated between 1 and n times. For example, the array nums = [0,1,2,4,5,6,7] might become:
 
-Prior to being passed to your function, nums is possibly rotated at an unknown pivot index k (1 <= k < nums.length) such that the resulting array is [nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]] (0-indexed). For example, [0,1,2,4,5,6,7] might be rotated at pivot index 3 and become [4,5,6,7,0,1,2].
+[4,5,6,7,0,1,2] if it was rotated 4 times.
+[0,1,2,4,5,6,7] if it was rotated 7 times.
+Notice that rotating an array [a[0], a[1], a[2], ..., a[n-1]] 1 time results in the array [a[n-1], a[0], a[1], a[2], ..., a[n-2]].
 
-Given the array nums after the possible rotation and an integer target, return the index of target if it is in nums, or -1 if it is not in nums.
+Given the sorted rotated array nums of unique elements, return the minimum element of this array.
 
-You must write an algorithm with O(log n) runtime complexity.
+You must write an algorithm that runs in O(log n) time.
 
 Example 1:
-Input: nums = [4,5,6,7,0,1,2], target = 0
-Output: 4
+Input: nums = [3,4,5,1,2]
+Output: 1
+Explanation: The original array was [1,2,3,4,5] rotated 3 times.
 
 Example 2:
-Input: nums = [4,5,6,7,0,1,2], target = 3
-Output: -1
+Input: nums = [4,5,6,7,0,1,2]
+Output: 0
+Explanation: The original array was [0,1,2,4,5,6,7] and it was rotated 4 times.
 
 Example 3:
-Input: nums = [1], target = 0
-Output: -1
+Input: nums = [11,13,15,17]
+Output: 11
+Explanation: The original array was [11,13,15,17] and it was rotated 4 times. 
 
 Constraints:
 
-1 <= nums.length <= 5000
--10^4 <= nums[i] <= 10^4
-All values of nums are unique.
-nums is an ascending array that is possibly rotated.
--10^4 <= target <= 10^4
+n == nums.length
+1 <= n <= 5000
+-5000 <= nums[i] <= 5000
+All the integers of nums are unique.
+nums is sorted and rotated between 1 and n times.
  */
 
 /*
@@ -56,7 +61,7 @@ Space Complexity: O(1)
 
 package Arrays.Medium;
 
-public class _33_Search_in_Rotated_Sorted_Array {
+public class _153_Find_Minimum_in_Rotated_Sorted_Array {
   // Method to find the index of the element in the rotated sorted array
   public static int search(int[] nums, int target) {
     int left = 0, right = nums.length - 1;
@@ -91,12 +96,11 @@ public class _33_Search_in_Rotated_Sorted_Array {
     return -1;
   }
 
-  // Main method to test search
+  // Main method to test findMin
   public static void main(String[] args) {
     int[] nums = { 4, 5, 6, 7, 0, 1, 2 };
-    int target = 0;
 
-    int result = search(nums, target);
+    int result = findMin(nums);
 
     System.out.println("The index of the target in the array is : " + result);
   }
