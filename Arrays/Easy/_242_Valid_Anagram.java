@@ -33,7 +33,6 @@ Space Complexity: O(1), fixed-size array of length 26.
 package Arrays.Easy;
 
 public class _242_Valid_Anagram {
-
     // Method to check if two strings are anagrams
     public static boolean isAnagram(String s, String t) {
         // Check if lengths differ
