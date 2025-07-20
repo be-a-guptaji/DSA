@@ -61,7 +61,7 @@ public class _53_Maximum_Subarray {
         return maxSum;
     }
 
-    // Main method to test maxSubArrayh
+    // Main method to test maxSubArray
     public static void main(String[] args) {
         int[] nums = { -2, 3, 1, 3 };
 
