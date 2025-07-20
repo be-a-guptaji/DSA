@@ -50,7 +50,6 @@ Space Complexity: O(n), where n is the number of elements in the array.
 package Arrays.Easy;
 
 public class _1_Two_Sum {
-
     // Method to find two indices of numbers adding up to target
     public static int[] twoSum(int[] nums, int target) {
         // Use a hashmap to store number and its index
