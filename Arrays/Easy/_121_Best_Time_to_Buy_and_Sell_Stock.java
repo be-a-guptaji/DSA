@@ -40,7 +40,6 @@ Space Complexity: O(1), as we are using only a constant amount of extra space fo
 package Arrays.Easy;
 
 public class _121_Best_Time_to_Buy_and_Sell_Stock {
-
     // Method to find the maximum profit from stock prices
     public static int maxProfit(int[] prices) {
         // Initialize variables to track minimum price and maximum profit
