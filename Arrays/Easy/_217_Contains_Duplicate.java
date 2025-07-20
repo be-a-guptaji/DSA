@@ -24,7 +24,7 @@ Output: true
 Constraints:
 
 1 <= nums.length <= 10^5
--109 <= nums[i] <= 109
+-10^9 <= nums[i] <= 10^9
  */
 
 /*
