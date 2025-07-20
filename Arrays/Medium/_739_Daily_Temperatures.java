@@ -21,28 +21,27 @@ Constraints:
 
 1 <= temperatures.length <= 10^5
 30 <= temperatures[i] <= 100
- */
+*/
 
 /*
-  Approach: In the given solution, the approach computes the product of all elements in the array 
-  except the current one by performing two linear passes without using division.
+  Approach:
+  The problem is solved using a Monotonic Stack (a stack that stores indices of temperatures 
+  in decreasing order of their values).
 
-  The method initializes an output array `result`, where:
-  - The first pass calculates the **prefix product** for each index — that is, the product of 
-    all elements to the left of the current index. This is stored in the `result` array.
+  - We traverse the temperatures array from left to right.
+  - For each day (index `i`), we check if the current temperature is greater than the temperature 
+    at the index stored at the top of the stack.
+  - If it is, it means we've found a warmer day for the day at the top of the stack:
+      - Pop that index from the stack.
+      - Calculate the difference between current day and that day: (i - popped index).
+      - Store this difference in the result array.
+  - After processing all warmer days for the current temperature, push the current index `i` onto the stack.
+  - At the end of the loop, all indices left in the stack will have no warmer future day, so their result remains 0.
 
-  - The second pass traverses the array from right to left, maintaining a running **suffix product** 
-    of elements to the right of the current index. During this traversal, each `result[i]` is updated 
-    by multiplying it with the current suffix product.
-
-  This technique ensures that for every index `i`, result[i] contains the product of all elements 
-  in the array except `nums[i]`.
-
-  The solution avoids using division and extra data structures (like additional arrays or maps),
-  making it efficient and space-optimized.
+  This approach ensures each index is pushed and popped at most once, leading to an efficient linear time solution.
 
   Time Complexity:  O(n), where n is the length of the input array.
-  Space Complexity: O(1), excluding the output array (as allowed by the problem constraints).
+  Space Complexity: O(n), due to the stack and result array.
 */
 
 package Arrays.Medium;
@@ -50,34 +49,34 @@ package Arrays.Medium;
 import java.util.Arrays;
 
 public class _739_Daily_Temperatures {
-    // Method to find all triplets that sum to zero
-    public static int[] dailyTemperatures(int[] nums) {
-        int n = nums.length;
-        int[] result = new int[n],stack=new int[n];
+  // Method to compute number of days to wait for a warmer temperature
+  public static int[] dailyTemperatures(int[] temperatures) {
+    // Initialize variables
+    int n = temperatures.length, stack_pointer = -1;
+    int[] result = new int[n], stack = new int[n];
 
-        // Step 1: Calculate prefix products
-        result[0] = 1;
-        for (int i = 1; i < n; i++) {
-            result[i] = result[i - 1] * nums[i - 1];
-        }
-
-        // Step 2: Multiply with suffix products
-        int suffix = 1;
-        for (int i = n - 1; i >= 0; i--) {
-            result[i] *= suffix;
-            suffix *= nums[i];
-        }
-
-        // Return the result
-        return result;
+    // Iterate over the temprature array
+    for (int i = 0; i < n; i++) {
+      // Check if the last value has the lower temprature than the current temprature
+      while (stack_pointer != -1 && temperatures[stack[stack_pointer]] < temperatures[i]) {
+        result[stack[stack_pointer]] = i - stack[stack_pointer];
+        stack_pointer--;
+      }
+      stack_pointer++;
+      stack[stack_pointer] = i;
     }
 
-    // Main method to test dailyTemperatures
-    public static void main(String[] args) {
-        int[] nums = { -1, 1, 0, -3, 3 };
+    // Return the result
+    return result;
+  }
 
-        int[] result = dailyTemperatures(nums);
+  // Main method to test dailyTemperatures
+  public static void main(String[] args) {
+    int[] nums = { 73, 74, 75, 71, 69, 72, 76, 73 };
 
-        System.out.println("The product of all the elements of nums except nums[i] is : " + Arrays.toString(result));
-    }
+    int[] result = dailyTemperatures(nums);
+
+    System.out
+        .println("The days of wait for the warmer day with respect to their index are : " + Arrays.toString(result));
+  }
 }
