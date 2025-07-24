@@ -58,7 +58,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class _76_Minimum_Window_Substring {
-
     // Method to find the minimum window substring that contains all characters of t
     public static String minWindow(String s, String t) {
         // If the length of s is less than t, return empty string as it's impossible to
