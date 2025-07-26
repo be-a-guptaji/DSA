@@ -31,19 +31,17 @@ newInterval.length == 2
 */
 
 /*
-Approach: This solution uses a greedy strategy combined with sorting. 
-First, the input intervals are sorted based on their starting points. 
-Then, we iterate through the sorted intervals and merge overlapping ones. 
-Two intervals overlap if the start of the current interval is less than or equal 
-to the end of the previous (last merged) interval. 
-If they overlap, we update the end of the last interval with the maximum of both ends. 
-Otherwise, we add the current interval to the result list as a new non-overlapping interval.
+Approach: This solution uses a greedy strategy. 
+Since the input intervals are already sorted based on their starting points, 
+we iterate through the intervals and do the following:
+1. Add all intervals ending before the start of newInterval to the result.
+2. Merge all intervals that overlap with newInterval.
+3. Add all remaining intervals to the result.
 
-Time Complexity: O(n log n), where n is the number of intervals. 
-We spend O(n log n) time to sort the intervals, and then O(n) time to iterate and merge.
+Time Complexity: O(n), where n is the number of intervals. 
+We iterate through the intervals once.
 
-Space Complexity: O(n), for the output list of merged intervals. 
-No extra data structures are used beyond the result.
+Space Complexity: O(n), for the output list of merged intervals.
 */
 
 package Arrays.Medium;
@@ -55,46 +53,37 @@ import java.util.List;
 public class _57_Insert_Interval {
     // Method to insert the new interval in the intervals
     public static int[][] insert(int[][] intervals, int[] newInterval) {
+        // Make the merged array list for the intervals
         List<int[]> mergedList = new ArrayList<>();
 
-        for (int[] currentInterval : intervals) {
-            int lastIntervalIndex = mergedList.size() - 1;
-            if (newInterval[1] < currentInterval[0]) {
-                System.out.println("If");
-                if (currentInterval[0] > mergedList.get(lastIntervalIndex)[0]) {
-                    int[] lastInterval = mergedList.removeLast();
-                    mergedList.add(new int[] { Math.min(lastInterval[0], currentInterval[0]),
-                            Math.max(lastInterval[1], currentInterval[1]) });
-                } else {
-                    mergedList.add(new int[] { currentInterval[0], Math.max(newInterval[1], currentInterval[1]) });
-                }
+        // Initialize the variable for index and length
+        int index = 0;
+        int length = intervals.length;
 
-                // newInterval = mergedList.removeLast();
-            } else if (currentInterval[1] > newInterval[0]) {
-                System.out.println("Else If");
-                if (currentInterval[0] > mergedList.get(lastIntervalIndex)[0]) {
-                    int[] lastInterval = mergedList.removeLast();
-                    mergedList.add(new int[] { Math.min(lastInterval[0], currentInterval[0]),
-                            Math.max(lastInterval[1], currentInterval[1]) });
-                } else {
-                    mergedList.add(new int[] { currentInterval[0], Math.max(newInterval[1], currentInterval[1]) });
-                }
-                // newInterval = mergedList.removeLast();
-            } else {
-                System.out.println("Else");
-                mergedList.add(currentInterval);
-            }
-            System.out.println(newInterval[0] + " " + newInterval[1]);
+        // Add first non overlapping intervals
+        while (index < length && intervals[index][1] < newInterval[0]) {
+            mergedList.add(intervals[index]);
+            index++;
         }
 
-        // Convert the List to array of arrays
-        int[][] result = new int[mergedList.size()][];
-        for (int i = 0; i < mergedList.size(); i++) {
-            result[i] = mergedList.get(i);
+        // Merge the newInterval and the overlapping intervals
+        while (index < length && intervals[index][0] <= newInterval[1]) {
+            newInterval[0] = Math.min(newInterval[0], intervals[index][0]);
+            newInterval[1] = Math.max(newInterval[1], intervals[index][1]);
+            index++;
         }
 
-        // Return the result=-
-        return result;
+        // Add the newInterval to the mergedList
+        mergedList.add(newInterval);
+
+        // Add remaining intervals
+        while (index < length) {
+            mergedList.add(intervals[index]);
+            index++;
+        }
+
+        // Return the result
+        return mergedList.toArray(new int[mergedList.size()][2]);
     }
 
     // Main method to test insert
