@@ -3,7 +3,9 @@ LeetCode Problem: https://leetcode.com/problems/search-insert-position/
 
 Question: 35. Search Insert Position
 
-Problem Statement: Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+Problem Statement:
+Given a sorted array of distinct integers and a target value, return the index if the target is found.
+If not, return the index where it would be if it were inserted in order.
 
 You must write an algorithm with O(log n) runtime complexity.
 
@@ -20,62 +22,62 @@ Input: nums = [1,3,5,6], target = 7
 Output: 4
 
 Constraints:
-
 1 <= nums.length <= 10^4
 -10^4 <= nums[i] <= 10^4
 nums contains distinct values sorted in ascending order.
 -10^4 <= target <= 10^4
- */
+*/
 
 /*
-Approach: We solve this problem using **binary search** to minimize the number of API calls to `isBadVersion(version)`.
+Approach:
+This problem can be solved efficiently using **binary search** since the array is sorted.
 
-- Start with a search range of [1, n].
-- Repeatedly check the middle version:
-  - If it's bad, the first bad version must be at or before it (move the right pointer).
-  - If it's good, the first bad version must be after it (move the left pointer).
-- When left == right, we've found the first bad version.
+- We initialize two pointers: left = 0, right = nums.length - 1
+- We perform binary search to find the target:
+    - If nums[mid] == target: return mid
+    - If nums[mid] < target: search the right half
+    - If nums[mid] > target: search the left half
+- If the target is not found, left will represent the index where the target should be inserted.
 
-This approach works efficiently even when n is large (up to 2^31 - 1).
+This works because binary search helps us narrow down the position quickly in O(log n) time.
 
-Time Complexity: O(log n) — Binary search cuts the range in half each time.
-Space Complexity: O(1) — Constant space is used.
- */
+Time Complexity: O(log n) — because binary search divides the array in half each iteration
+Space Complexity: O(1) — no additional space is used
+*/
 
 package BinarySearchAndSorting.Easy;
 
 public class _35_Search_Insert_Position {
-    // Method to find the index of the target in nums array
+    // Method to find the index of the target in nums array or where it should be
+    // inserted
     public static int searchInsert(int[] nums, int target) {
         // Initialize variable for tracking
-        int left = 0, right = nums.length - 1, mid;
+        int left = 0, right = nums.length - 1;
 
-        // Logic as binary search
-        while (left < right) {
-            mid = left + (right - left) / 2;
+        // Logic to find the index
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
             if (nums[mid] == target) {
-                right = mid;
-            } else {
+                return mid;
+            } else if (nums[mid] < target) {
                 left = mid + 1;
+            } else {
+                right = mid - 1;
             }
         }
 
-        // Return the value
+        // Target not found, return insertion point
         return left;
-    }
-
-    // Mocking the isBadVersion API
-    public static boolean isBadVersion(int n) {
-        return n >= 4;
     }
 
     // Main method to test searchInsert
     public static void main(String[] args) {
-        int[] nums = [1,3,5,6];
-        int target = 2;
+        int[] nums = { 1, 3, 5, 6 };
+        int target = 7;
 
-        int result = searchInsert(nums,target);
+        int result = searchInsert(nums, target);
 
-        System.out.println("The number in the string is : " + result);
+        System.out.println("The index at which the target can be found or inserted is: " + result);
     }
 }
