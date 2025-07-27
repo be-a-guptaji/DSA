@@ -1,7 +1,7 @@
 /*
-LeetCode Problem: https://leetcode.com/problems/search-insert-position/
+LeetCode Problem: https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
 
-Question: 35. Search Insert Position
+Question: 34. Find First and Last Position of Element in Sorted Array
 
 Problem Statement: Given a sorted array of distinct integers and a target value, return the index if the target is found.
 If not, return the index where it would be if it were inserted in order.
@@ -44,7 +44,7 @@ Time Complexity: O(log n) — because binary search divides the array in half ea
 Space Complexity: O(1) — no additional space is used
 */
 
-package BinarySearchAndSorting.Easy;
+package BinarySearchAndSorting.Medium;
 
 public class _35_Search_Insert_Position {
     // Method to find the index of the target in nums array or where it should be
