@@ -75,6 +75,6 @@ public class _278_First_Bad_Version {
 
         int result = firstBadVersion(n);
 
-        System.out.println("The number in the string is : " + result);
+        System.out.println("The first bad version is : " + result);
     }
 }
