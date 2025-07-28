@@ -90,7 +90,6 @@ public class _34_Find_First_and_Last_Position_of_Element_in_Sorted_Array {
             }
         }
 
-        // Return the firstPosition
         return firstPosition;
     }
 
@@ -113,7 +112,6 @@ public class _34_Find_First_and_Last_Position_of_Element_in_Sorted_Array {
             }
         }
 
-        // Return the lastPositon
         return lastPositon;
     }
 
