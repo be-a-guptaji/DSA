@@ -43,7 +43,7 @@ Approach: This problem can be solved efficiently using **binary search** since t
     
 Time Complexity: O(log n) — because binary search divides the array in half each iteration
 Space Complexity: O(1) — no additional space is used
-    */
+*/
 
 package BinarySearchAndSorting.Medium;
 
