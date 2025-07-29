@@ -29,19 +29,21 @@ nums[i] != nums[i + 1] for all valid i.
 */
 
 /*
-Approach: This problem can be solved efficiently using **binary search** since the array is sorted.
+Approach: This problem can be solved efficiently using **binary search** since we are guaranteed 
+that a peak element exists and adjacent elements are not equal.
 
-   - We initialize two pointers: left = 0, right = nums.length - 1
-   - We perform binary search to find the target:
-   - If nums[mid] == target: return mid
-   - If nums[mid] < target: search the right half
-   - If nums[mid] > target: search the left half
-   - If the target is not found, left will represent the index where the target should be inserted.
+   - Initialize two pointers: left = 0, right = nums.length - 1
+   - While left < right:
+       - Compute mid = left + (right - left) / 2
+       - If nums[mid] < nums[mid + 1], then the peak must be on the right side (mid + 1 to right)
+       - Otherwise, the peak is on the left side (left to mid)
+   - When left == right, we have found a peak element
 
-   This works because binary search helps us narrow down the position quickly in O(log n) time.
-    
-Time Complexity: O(log n) — because binary search divides the array in half each iteration
-Space Complexity: O(1) — no additional space is used
+   This works because at least one peak always exists, and the binary search narrows down 
+   the range by comparing the mid element with its neighbor.
+
+Time Complexity: O(log n) — binary search cuts the search space in half at each step  
+Space Complexity: O(1) — no extra space is used
 */
 
 package BinarySearchAndSorting.Medium;
