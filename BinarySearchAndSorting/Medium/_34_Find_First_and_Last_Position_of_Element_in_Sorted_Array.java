@@ -50,8 +50,7 @@ package BinarySearchAndSorting.Medium;
 import java.util.Arrays;
 
 public class _34_Find_First_and_Last_Position_of_Element_in_Sorted_Array {
-    // Method to find the index of the target in nums array or where it should be
-    // inserted
+    // Method to find the index bound of the target
     public static int[] searchRange(int[] nums, int target) {
         // Make a result variable for returning the index
         int[] result = new int[] { -1, -1 };
