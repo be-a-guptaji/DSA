@@ -7,19 +7,15 @@ Problem Statement: Given two sorted arrays nums1 and nums2 of size m and n respe
 
 The overall run time complexity should be O(log (m+n)).
 
- 
-
 Example 1:
-
 Input: nums1 = [1,3], nums2 = [2]
 Output: 2.00000
 Explanation: merged array = [1,2,3] and median is 2.
-Example 2:
 
+Example 2:
 Input: nums1 = [1,2], nums2 = [3,4]
 Output: 2.50000
 Explanation: merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.
- 
 
 Constraints:
 
@@ -59,59 +55,45 @@ This approach avoids recursion and uses constant-time operations with each chara
 
 package BinarySearchAndSorting.Hard;
 
-import java.util.Stack;
-
 public class _4_Median_of_Two_Sorted_Arrays {
-    // Method to find result form a valid expression written in string
-    public static int calculate(String s) {
-        Stack<Integer> stack = new Stack<>();
-        int result = 0; // running result
-        int sign = 1; // current sign (+1 or -1)
-        int num = 0; // current number being built
+    // Method to find median in two sorted array
+    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int nums1Pointer = 0, nums2Pointer = 0, mergedArrayPointer = 0;
+        int[] mergedArray = new int[nums1.length + nums2.length];
 
-        for (int i = 0; i < s.length(); i++) {
-            char ch = s.charAt(i);
-
-            if (Character.isDigit(ch)) {
-                // Build number character by character
-                num = num * 10 + (ch - '0');
-            } else if (ch == '+') {
-                // Finalize the previous number
-                result += sign * num;
-                sign = 1;
-                num = 0;
-            } else if (ch == '-') {
-                result += sign * num;
-                sign = -1;
-                num = 0;
-            } else if (ch == '(') {
-                // Push current result and sign to stack before new sub-expression
-                stack.push(result);
-                stack.push(sign);
-                // Reset for new subexpression
-                result = 0;
-                sign = 1;
-            } else if (ch == ')') {
-                // Complete current subexpression
-                result += sign * num;
-                num = 0;
-                result *= stack.pop(); // Apply the sign before '('
-                result += stack.pop(); // Add the result before '('
+        while (nums1Pointer < nums1.length && nums2Pointer < nums2.length) {
+            if (nums1[nums1Pointer] < nums2[nums2Pointer]) {
+                mergedArray[mergedArrayPointer++] = nums1[nums1Pointer++];
+            } else {
+                mergedArray[mergedArrayPointer++] = nums2[nums2Pointer++];
             }
-            // Ignore spaces
         }
 
-        // Add any leftover number after the last character
-        result += sign * num;
-        return result;
+        while (nums1Pointer < nums1.length) {
+            mergedArray[mergedArrayPointer++] = nums1[nums1Pointer++];
+        }
+
+        while (nums2Pointer < nums2.length) {
+            mergedArray[mergedArrayPointer++] = nums2[nums2Pointer++];
+        }
+
+        mergedArrayPointer--;
+
+        if ((mergedArrayPointer & 1) == 1) {
+            return (double) (mergedArray[mergedArrayPointer / 2]
+                    + mergedArray[(mergedArrayPointer / 2) + 1]) / 2;
+        } else {
+            return (double) mergedArray[mergedArrayPointer / 2];
+        }
+
     }
 
-    // Main method to test the calculate function
+    // Main method to test the findMedianSortedArrays function
     public static void main(String[] args) {
-        String s = "( 1 + ( 4+ 5+ 2) -3)+( 6+8)";
+        int[] nums1 = { 1, 3 }, nums2 = { 2, 4 };
 
-        int result = calculate(s);
+        double result = findMedianSortedArrays(nums1, nums2);
 
-        System.out.println("The result of the valid expression in string is : " + result);
+        System.out.println("The median in two sorted array is : " + result);
     }
 }
