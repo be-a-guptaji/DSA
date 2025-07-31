@@ -4,96 +4,106 @@ LeetCode Problem: https://leetcode.com/problems/median-of-two-sorted-arrays/
 Question: 4. Median of Two Sorted Arrays
 
 Problem Statement: Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
-
 The overall run time complexity should be O(log (m+n)).
 
 Example 1:
 Input: nums1 = [1,3], nums2 = [2]
 Output: 2.00000
-Explanation: merged array = [1,2,3] and median is 2.
 
 Example 2:
 Input: nums1 = [1,2], nums2 = [3,4]
 Output: 2.50000
-Explanation: merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.
 
 Constraints:
-
-nums1.length == m
-nums2.length == n
-0 <= m <= 1000
-0 <= n <= 1000
-1 <= m + n <= 2000
--10^6 <= nums1[i], nums2[i] <= 10^6
+- nums1.length == m, nums2.length == n
+- 0 <= m <= 1000, 0 <= n <= 1000
+- 1 <= m + n <= 2000
+- -10^6 <= nums1[i], nums2[i] <= 10^6
 */
 
 /*
-Approach: We use a **stack-based iterative approach** to simulate evaluation of the expression.
+Approach: Binary Search on Partition
 
-Key ideas:
-1. Maintain a `result` which accumulates the running total.
-2. Use a `sign` variable to track whether the current number is positive or negative.
-3. Use a `stack` to store previous results and signs when we encounter `(`.
-4. On encountering `)`, we complete the sub-expression by popping sign and previous result from the stack.
-5. We handle multi-digit numbers by accumulating them as we iterate.
-6. Spaces are skipped.
+Key Idea:
+- We perform binary search on the smaller array to find a correct partition such that:
+  1. All elements on the left side of the partition (from both arrays) are less than or equal to
+     all elements on the right side.
+  2. The total number of elements on the left side equals (m + n + 1) / 2 (to handle both even and odd cases).
 
 Steps:
-- If current char is a digit → build the number.
-- If '+' or '-' → finalize the previous number with its sign, update sign.
-- If '(' → push result and sign to stack, reset result and sign.
-- If ')' → compute subexpression and apply the sign and result from stack.
+- Always binary search on the smaller array to maintain O(log(min(m, n))) time.
+- At each step, choose a partition point in nums1 (i), then calculate the corresponding partition
+  in nums2 (j = totalLeft - i).
+- Use binary search to adjust the partition until you find:
+  maxLeft ≤ minRight condition.
+- Once found, calculate median based on total array size (odd/even).
 
-Time Complexity: O(n)
-- Each character is visited once.
-
-Space Complexity: O(n)
-- Stack stores signs and results during nested expressions.
-
-This approach avoids recursion and uses constant-time operations with each character.
+Time Complexity: O(log(min(m, n)))
+Space Complexity: O(1)
 */
 
 package BinarySearchAndSorting.Hard;
 
 public class _4_Median_of_Two_Sorted_Arrays {
-    // Method to find median in two sorted array
+    // Method to find the median of two sorted arrays
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        int nums1Pointer = 0, nums2Pointer = 0, mergedArrayPointer = 0;
-        int[] mergedArray = new int[nums1.length + nums2.length];
+        // Ensure nums1 is the smaller array to keep binary search efficient
+        if (nums1.length > nums2.length) {
+            return findMedianSortedArrays(nums2, nums1);
+        }
 
-        while (nums1Pointer < nums1.length && nums2Pointer < nums2.length) {
-            if (nums1[nums1Pointer] < nums2[nums2Pointer]) {
-                mergedArray[mergedArrayPointer++] = nums1[nums1Pointer++];
-            } else {
-                mergedArray[mergedArrayPointer++] = nums2[nums2Pointer++];
+        int m = nums1.length;
+        int n = nums2.length;
+
+        // Half of the total number of elements (left side of the partition)
+        int totalLeft = (m + n + 1) / 2;
+
+        int left = 0, right = m;
+
+        // Binary search on the smaller array
+        while (left <= right) {
+            int i = (left + right) / 2; // Partition index for nums1
+            int j = totalLeft - i; // Corresponding partition index for nums2
+
+            // Edge values for partition handling
+            int nums1LeftMax = (i == 0) ? Integer.MIN_VALUE : nums1[i - 1];
+            int nums1RightMin = (i == m) ? Integer.MAX_VALUE : nums1[i];
+
+            int nums2LeftMax = (j == 0) ? Integer.MIN_VALUE : nums2[j - 1];
+            int nums2RightMin = (j == n) ? Integer.MAX_VALUE : nums2[j];
+
+            // Correct partition found
+            if (nums1LeftMax <= nums2RightMin && nums2LeftMax <= nums1RightMin) {
+                if ((m + n) % 2 == 0) {
+                    // Even number of elements → average of two middle values
+                    return (Math.max(nums1LeftMax, nums2LeftMax) +
+                            Math.min(nums1RightMin, nums2RightMin)) / 2.0;
+                } else {
+                    // Odd number of elements → max of left side
+                    return Math.max(nums1LeftMax, nums2LeftMax);
+                }
+            }
+            // Move partition in nums1 to the left
+            else if (nums1LeftMax > nums2RightMin) {
+                right = i - 1;
+            }
+            // Move partition in nums1 to the right
+            else {
+                left = i + 1;
             }
         }
 
-        while (nums1Pointer < nums1.length) {
-            mergedArray[mergedArrayPointer++] = nums1[nums1Pointer++];
-        }
-
-        while (nums2Pointer < nums2.length) {
-            mergedArray[mergedArrayPointer++] = nums2[nums2Pointer++];
-        }
-
-        mergedArrayPointer--;
-
-        if ((mergedArrayPointer & 1) == 1) {
-            return (double) (mergedArray[mergedArrayPointer / 2]
-                    + mergedArray[(mergedArrayPointer / 2) + 1]) / 2;
-        } else {
-            return (double) mergedArray[mergedArrayPointer / 2];
-        }
-
+        // Code should never reach here if inputs are valid
+        throw new IllegalArgumentException("Input arrays are not sorted properly.");
     }
 
-    // Main method to test the findMedianSortedArrays function
+    // Main method to test findMedianSortedArrays
     public static void main(String[] args) {
+
         int[] nums1 = { 1, 3 }, nums2 = { 2, 4 };
 
         double result = findMedianSortedArrays(nums1, nums2);
 
-        System.out.println("The median in two sorted array is : " + result);
+        System.out.println("The median in two sorted arrays is: " + result);
     }
 }
