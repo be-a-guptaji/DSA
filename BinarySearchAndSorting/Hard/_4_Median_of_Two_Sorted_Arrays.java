@@ -49,6 +49,7 @@ public class _4_Median_of_Two_Sorted_Arrays {
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
         // Ensure nums1 is the smaller array to keep binary search efficient
         if (nums1.length > nums2.length) {
+            // Change the position of the array so that the smaller one is always nums1
             return findMedianSortedArrays(nums2, nums1);
         }
 
