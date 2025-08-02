@@ -3,8 +3,7 @@ LeetCode Problem: https://leetcode.com/problems/move-zeroes/
 
 Problem: 283. Move Zeroes
 
-Problem Statement:
-Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+Problem Statement: Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
 
 Note: You must do this in-place without making a copy of the array.
 
