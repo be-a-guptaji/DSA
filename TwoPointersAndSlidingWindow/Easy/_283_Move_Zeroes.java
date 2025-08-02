@@ -42,6 +42,7 @@ package TwoPointersAndSlidingWindow.Easy;
 import java.util.Arrays;
 
 public class _283_Move_Zeroes {
+    // Method to move zeroes to the right
     public static void moveZeroes(int[] nums) {
         int insertPos = 0;
 
