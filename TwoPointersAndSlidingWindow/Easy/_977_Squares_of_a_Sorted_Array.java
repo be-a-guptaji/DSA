@@ -25,18 +25,19 @@ Follow up: Squaring each element and sorting the new array is very trivial, coul
 */
 
 /*
-Approach: This problem is efficiently solved by using a two-pointer technique, taking advantage of the fact that the array is sorted.
+Approach:
+- The input array is sorted in non-decreasing order but may contain negative numbers.
+- Negative numbers when squared may be larger than some positive numbers squared.
+- To efficiently get a sorted array of squares in O(n) time, we:
+  1. Find the index where non-negative numbers start (using binary search).
+  2. Initialize two pointers:
+     - Left pointer at the last negative number.
+     - Right pointer at the first non-negative number.
+  3. Merge the squares of these two "subarrays" (negative part reversed by absolute value, and positive part).
+- This way, we merge two sorted sequences of squares into one sorted array.
 
-- We initialize a pointer `index = 1` which keeps track of the position to place the next unique element.
-- We iterate through the array starting from index 1.
-    - If the current element `nums[i]` is not equal to the previous element `nums[i - 1]`, it's unique.
-    - We assign `nums[index] = nums[i]` and increment `index`.
-- This effectively shifts all unique elements to the front of the array in-place.
-
-After the loop, the first `index` elements in the array are the unique ones.
-
-Time Complexity: O(n) — we iterate through the array once.
-Space Complexity: O(1) — the algorithm uses constant extra space.
+Time Complexity: O(n) — each element is processed once.
+Space Complexity: O(n) — for the output array.
 */
 
 package TwoPointersAndSlidingWindow.Easy;
