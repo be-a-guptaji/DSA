@@ -58,6 +58,7 @@ public class _283_Move_Zeroes {
         }
     }
 
+    // Main method to test moveZeroes
     public static void main(String[] args) {
         int[] nums = { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 };
 
