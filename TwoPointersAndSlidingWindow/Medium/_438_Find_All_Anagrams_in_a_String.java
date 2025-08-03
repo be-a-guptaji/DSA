@@ -50,6 +50,41 @@ import java.util.List;
 
 public class _438_Find_All_Anagrams_in_a_String {
     // Method to find the index of the anagrams
+    // public static List<Integer> findAnagrams(String s, String p) {
+    // List<Integer> result = new ArrayList<>();
+    // int slen = s.length(), plen = p.length();
+
+    // // If the length of the s is less than the p the return the empty list
+    // if (slen < plen)
+    // return result;
+
+    // int[] pCount = new int[26];
+    // int[] sCount = new int[26];
+
+    // // Initialize the array with the first plen characters
+    // for (int i = 0; i < plen; i++) {
+    // pCount[p.charAt(i) - 'a']++;
+    // sCount[s.charAt(i) - 'a']++;
+    // }
+
+    // // If the arrays are equal than add the first index to the list
+    // if (Arrays.equals(pCount, sCount)) {
+    // result.add(0);
+    // }
+
+    // // Logic to find the anagarams index
+    // for (int i = plen; i < slen; i++) {
+    // sCount[s.charAt(i) - 'a']++; // Add new char
+    // sCount[s.charAt(i - plen) - 'a']--; // Remove old char
+
+    // // If the arrays are equal than add the current adjusted index to the list
+    // if (Arrays.equals(pCount, sCount)) {
+    // result.add(i - plen + 1);
+    // }
+    // }
+
+    // // Return the result
+    // return result;
     public static List<Integer> findAnagrams(String s, String p) {
         // Make the list for the result
         List<Integer> result = new ArrayList<>();
@@ -57,31 +92,41 @@ public class _438_Find_All_Anagrams_in_a_String {
         // Initialize the lenght of both the string
         int slen = s.length(), plen = p.length();
 
-        // If the length of the s is less than the p the return the empty list
-        if (slen < plen)
+        // Early return if the source string is shorter than the pattern
+        if (slen < plen) {
             return result;
-
-        int[] pCount = new int[26];
-        int[] sCount = new int[26];
-
-        // Initialize the array with the first plen characters
-        for (int i = 0; i < plen; i++) {
-            pCount[p.charAt(i) - 'a']++;
-            sCount[s.charAt(i) - 'a']++;
         }
 
-        // If the arrays are equal than add the first index to the list
-        if (Arrays.equals(pCount, sCount)) {
+        // Convert both strings to character arrays for faster access
+        char[] sChars = s.toCharArray();
+        char[] pChars = p.toCharArray();
+
+        // Frequency arrays for characters in 'p' and current window in 's'
+        int[] pCount = new int[26];
+        int[] windowCount = new int[26];
+
+        // Initialize frequency counts for the pattern and the first window in 's'
+        for (int i = 0; i < plen; i++) {
+            pCount[pChars[i] - 'a']++;
+            windowCount[sChars[i] - 'a']++;
+        }
+
+        // Compare the initial window
+        if (Arrays.equals(pCount, windowCount)) {
             result.add(0);
         }
-        
-        // Logic to find the anagarams index
-        for (int i = plen; i < slen; i++) {
-            sCount[s.charAt(i) - 'a']++; // Add new char
-            sCount[s.charAt(i - plen) - 'a']--; // Remove old char
 
-            // If the arrays are equal than add the current adjusted index to the list
-            if (Arrays.equals(pCount, sCount)) {
+        // Slide the window over 's' one character at a time
+        for (int i = plen; i < slen; i++) {
+            // Add the new character to the window
+            windowCount[sChars[i] - 'a']++;
+
+            // Remove the leftmost character from the window
+            windowCount[sChars[i - plen] - 'a']--;
+
+            // If the current window matches the pattern's character count, add the start
+            // index
+            if (Arrays.equals(pCount, windowCount)) {
                 result.add(i - plen + 1);
             }
         }
