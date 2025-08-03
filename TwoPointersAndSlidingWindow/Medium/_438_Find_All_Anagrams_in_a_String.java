@@ -27,19 +27,28 @@ s and p consist of lowercase English letters.
 */
 
 /*
-Approach: This problem can be solved efficiently using **binary search** since the array is sorted.
+Approach: This problem is best solved using the **sliding window** technique with frequency counting.
 
-   - We initialize two pointers: left = 0, right = nums.length - 1
-   - We perform binary search to find the target:
-   - If nums[mid] == target: return mid
-   - If nums[mid] < target: search the right half
-   - If nums[mid] > target: search the left half
-   - If the target is not found, left will represent the index where the target should be inserted.
+- We maintain two frequency arrays (size 26) to track:
+  1. The count of characters in the pattern string `p`.
+  2. The count of characters in the current sliding window of length `p.length()` in `s`.
 
-   This works because binary search helps us narrow down the position quickly in O(log n) time.
-    
-Time Complexity: O(log n) — because binary search divides the array in half each iteration
-Space Complexity: O(1) — no additional space is used
+- We initialize both arrays and compare them.
+- Then we slide the window one character at a time by:
+    - Adding the next character to the window
+    - Removing the oldest character from the window
+    - Comparing the two frequency arrays
+
+- If they match, we record the start index of the window as an anagram match.
+
+This approach ensures we efficiently check each window in linear time.
+
+Time Complexity: O(n)  
+- where `n` is the length of `s`. Each character is visited only once during the sliding window.
+- Array comparison (`Arrays.equals`) is O(26) per comparison which is constant time.
+
+Space Complexity: O(1)  
+- We use two fixed-size arrays (size 26), regardless of the input size.
 */
 
 package TwoPointersAndSlidingWindow.Medium;
@@ -50,41 +59,6 @@ import java.util.List;
 
 public class _438_Find_All_Anagrams_in_a_String {
     // Method to find the index of the anagrams
-    // public static List<Integer> findAnagrams(String s, String p) {
-    // List<Integer> result = new ArrayList<>();
-    // int slen = s.length(), plen = p.length();
-
-    // // If the length of the s is less than the p the return the empty list
-    // if (slen < plen)
-    // return result;
-
-    // int[] pCount = new int[26];
-    // int[] sCount = new int[26];
-
-    // // Initialize the array with the first plen characters
-    // for (int i = 0; i < plen; i++) {
-    // pCount[p.charAt(i) - 'a']++;
-    // sCount[s.charAt(i) - 'a']++;
-    // }
-
-    // // If the arrays are equal than add the first index to the list
-    // if (Arrays.equals(pCount, sCount)) {
-    // result.add(0);
-    // }
-
-    // // Logic to find the anagarams index
-    // for (int i = plen; i < slen; i++) {
-    // sCount[s.charAt(i) - 'a']++; // Add new char
-    // sCount[s.charAt(i - plen) - 'a']--; // Remove old char
-
-    // // If the arrays are equal than add the current adjusted index to the list
-    // if (Arrays.equals(pCount, sCount)) {
-    // result.add(i - plen + 1);
-    // }
-    // }
-
-    // // Return the result
-    // return result;
     public static List<Integer> findAnagrams(String s, String p) {
         // Make the list for the result
         List<Integer> result = new ArrayList<>();
