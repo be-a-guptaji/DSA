@@ -24,9 +24,9 @@ Constraints:
 3 <= nums.length <= 500
 -1000 <= nums[i] <= 1000
 -10^4 <= target <= 10^4
-*/
+ */
 
-/*
+ /*
 Approach: Two Pointers after Sorting
 
 1. Sort the array to enable the use of the two-pointer technique.
@@ -44,13 +44,13 @@ Approach: Two Pointers after Sorting
 
 Time Complexity: O(n^2)  
 Space Complexity: O(1)  
-*/
-
+ */
 package TwoPointersAndSlidingWindow.Medium;
 
 import java.util.Arrays;
 
 public class _16_3Sum_Closest {
+
     // Method to find the 3 sum closest
     public static int threeSumClosest(int[] nums, int target) {
         // Sort the array first
@@ -87,7 +87,7 @@ public class _16_3Sum_Closest {
 
     // Main method to test threeSumClosest
     public static void main(String[] args) {
-        int[] nums = { 13, -8, 23, -44, 60, -29, 17, -33, 5, 1, -4, 99, 2, -100, 50, -50, 34, -20 };
+        int[] nums = {13, -8, 23, -44, 60, -29, 17, -33, 5, 1, -4, 99, 2, -100, 50, -50, 34, -20};
         int target = 3;
 
         int result = threeSumClosest(nums, target);
