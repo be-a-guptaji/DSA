@@ -27,15 +27,20 @@ Follow up: Could you come up with a one-pass algorithm using only constant extra
  */
 
  /*
-Approach: Sliding Window
+Approach: Dutch National Flag Algorithm (One-pass In-place)
 
 Key Idea:
-- Maintain a window [left, right] such that the number of 0s in this window is at most k.
-- Expand the window by moving `right`.
-- If the number of 0s exceeds `k`, shrink the window from the left until it becomes valid again.
-- At each step, keep track of the maximum window size encountered.
+- Use three pointers: low, mid, high.
+- low: marks boundary for 0s
+- mid: current element
+- high: marks boundary for 2s
 
-Time Complexity: O(n), where n = length of the array.
+Rules:
+- If nums[mid] == 0, swap with nums[low] and move both forward.
+- If nums[mid] == 1, just move mid forward.
+- If nums[mid] == 2, swap with nums[high] and move high backward.
+
+Time Complexity: O(n)
 Space Complexity: O(1)
  */
 package TwoPointersAndSlidingWindow.Medium;
