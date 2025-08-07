@@ -26,25 +26,25 @@ Constraints:
 -10^4 <= target <= 10^4
  */
 
- /*
+/*
 Approach: Two Pointers after Sorting
 
 1. Sort the array to enable the use of the two-pointer technique.
 2. For each element `nums[i]` in the array (from 0 to length - 3):
-   - Initialize two pointers:
-     - `left = i + 1`
-     - `right = nums.length - 1`
-   - Calculate the sum: `currentSum = nums[i] + nums[left] + nums[right]`
-   - Compare this sum with the target:
-     - If the difference between currentSum and target is smaller than the difference between result and target, update result.
-   - Move pointers based on how `currentSum` compares to `target`:
-     - If `currentSum < target`, move `left++` to increase the sum.
-     - If `currentSum > target`, move `right--` to decrease the sum.
-     - If `currentSum == target`, it's the closest possible, return immediately.
+  - Initialize two pointers:
+    - `left = i + 1`
+    - `right = nums.length - 1`
+  - Calculate the sum: `currentSum = nums[i] + nums[left] + nums[right]`
+  - Compare this sum with the target:
+    - If the difference between currentSum and target is smaller than the difference between result and target, update result.
+  - Move pointers based on how `currentSum` compares to `target`:
+    - If `currentSum < target`, move `left++` to increase the sum.
+    - If `currentSum > target`, move `right--` to decrease the sum.
+    - If `currentSum == target`, it's the closest possible, return immediately.
 
 Time Complexity: O(n^2)  
 Space Complexity: O(1)  
- */
+*/
 package TwoPointersAndSlidingWindow.Medium;
 
 import java.util.Arrays;
@@ -87,7 +87,7 @@ public class _16_3Sum_Closest {
 
     // Main method to test threeSumClosest
     public static void main(String[] args) {
-        int[] nums = {13, -8, 23, -44, 60, -29, 17, -33, 5, 1, -4, 99, 2, -100, 50, -50, 34, -20};
+        int[] nums = { 13, -8, 23, -44, 60, -29, 17, -33, 5, 1, -4, 99, 2, -100, 50, -50, 34, -20 };
         int target = 3;
 
         int result = threeSumClosest(nums, target);
