@@ -23,9 +23,9 @@ Constraints:
 1 <= nums.length <= 200
 -10^9 <= nums[i] <= 10^9
 -10^9 <= target <= 10^9
-*/
+ */
 
-/*
+ /*
 Approach: Sorting + Two Pointers
 
 1. Sort the array to enable the use of the two-pointer technique.
@@ -43,8 +43,7 @@ Approach: Sorting + Two Pointers
 
 Time Complexity: O(n^3)  
 Space Complexity: O(1) (excluding the output list)
-*/
-
+ */
 package TwoPointersAndSlidingWindow.Medium;
 
 import java.util.ArrayList;
@@ -52,21 +51,22 @@ import java.util.Arrays;
 import java.util.List;
 
 public class _18_4Sum {
+
     // Method to find the 4 sum
-      public static List<List<Integer>> fourSum(int[] nums, int target) {
+    public static List<List<Integer>> fourSum(int[] nums, int target) {
         // Sort the array first
         Arrays.sort(nums);
         List<List<Integer>> result = new ArrayList<>();
 
         // Logic to find the 4 sum
         for (int i = 0; i < nums.length - 3; i++) {
-            if (i > 0 && nums[i] == nums[i - 1])
+            if (i > 0 && nums[i] == nums[i - 1]) {
                 continue; // Skip duplicate values for i
-
+            }
             for (int j = i + 1; j < nums.length - 2; j++) {
-                if (j > i + 1 && nums[j] == nums[j - 1])
+                if (j > i + 1 && nums[j] == nums[j - 1]) {
                     continue; // Skip duplicate values for j
-
+                }
                 int left = j + 1;
                 int right = nums.length - 1;
 
@@ -79,10 +79,12 @@ public class _18_4Sum {
                         result.add(Arrays.asList(nums[i], nums[j], nums[left], nums[right]));
 
                         // Skip duplicate values for left and right
-                        while (left < right && nums[left] == nums[left + 1])
+                        while (left < right && nums[left] == nums[left + 1]) {
                             left++;
-                        while (left < right && nums[right] == nums[right - 1])
+                        }
+                        while (left < right && nums[right] == nums[right - 1]) {
                             right--;
+                        }
 
                         left++;
                         right--;
@@ -101,7 +103,7 @@ public class _18_4Sum {
 
     // Main method to test fourSum
     public static void main(String[] args) {
-        int[] nums = { 1, 0, -1, 0, -2, 2 };
+        int[] nums = {1, 0, -1, 0, -2, 2};
         int target = 0;
 
         List<List<Integer>> result = fourSum(nums, target);
