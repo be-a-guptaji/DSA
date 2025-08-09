@@ -27,9 +27,9 @@ Constraints:
 -10^9 <= nums[i] <= 10^9
 nums is a non-decreasing array.
 -10^9 <= target <= 10^9
-*/
+ */
 
-/*
+ /*
 Approach: This problem can be solved efficiently using **binary search** since the array is sorted.
 
    - We initialize two pointers: left = 0, right = nums.length - 1
@@ -43,17 +43,17 @@ Approach: This problem can be solved efficiently using **binary search** since t
     
 Time Complexity: O(log n) — because binary search divides the array in half each iteration
 Space Complexity: O(1) — no additional space is used
-*/
-
+ */
 package BinarySearchAndSorting.Medium;
 
 import java.util.Arrays;
 
 public class _34_Find_First_and_Last_Position_of_Element_in_Sorted_Array {
+
     // Method to find the index bound of the target
     public static int[] searchRange(int[] nums, int target) {
         // Make a result variable for returning the index
-        int[] result = new int[] { -1, -1 };
+        int[] result = new int[]{-1, -1};
 
         // Find the first position of the target
         result[0] = findFirstIndexOfTarget(nums, target);
@@ -118,7 +118,7 @@ public class _34_Find_First_and_Last_Position_of_Element_in_Sorted_Array {
 
     // Main method to test searchRange
     public static void main(String[] args) {
-        int[] nums = { 5, 7, 7, 8, 8, 10 };
+        int[] nums = {5, 7, 7, 8, 8, 10};
         int target = 8;
 
         int[] result = searchRange(nums, target);
