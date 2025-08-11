@@ -37,22 +37,22 @@ Constraints:
 s consists of parentheses only '()[]{}'.
  */
 
- /*
+/*
 Approach: We solve this problem using a **stack** to match brackets.
 
 - Traverse each character of the string:
-  - If it’s an opening bracket ('(', '{', '['), push it onto the stack.
-  - If it’s a closing bracket:
-      - Check if the stack is not empty and the top of the stack has the matching opening bracket.
-      - If it matches, pop the stack.
-      - If it doesn’t match or stack is empty, return false immediately.
+ - If it’s an opening bracket ('(', '{', '['), push it onto the stack.
+ - If it’s a closing bracket:
+     - Check if the stack is not empty and the top of the stack has the matching opening bracket.
+     - If it matches, pop the stack.
+     - If it doesn’t match or stack is empty, return false immediately.
 - After traversing the string, if the stack is empty, return true; otherwise return false.
 
 This approach ensures that brackets are matched correctly and in order.
 
 Time Complexity: O(n) — We process each character once.
 Space Complexity: O(n) — In the worst case, all characters could be opening brackets stored in the stack.
- */
+*/
 package StacksAndQueues.Easy;
 
 import java.util.Stack;
