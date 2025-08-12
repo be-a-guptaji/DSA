@@ -40,21 +40,27 @@ At most 3 * 10^4 calls will be made to push, pop, top, and getMin.
  */
 
 /*
-Approach: We solve this problem using a **stack** to match brackets.
+Approach: We solve this problem using a stack that stores both the value and the current minimum at each push.
 
-- Traverse each character of the string:
- - If it’s an opening bracket ('(', '{', '['), push it onto the stack.
- - If it’s a closing bracket:
-     - Check if the stack is not empty and the top of the stack has the matching opening bracket.
-     - If it matches, pop the stack.
-     - If it doesn’t match or stack is empty, return false immediately.
-- After traversing the string, if the stack is empty, return true; otherwise return false.
+- Use a LinkedList<Node> where each Node stores:
+    - value → the element pushed
+    - minValue → the smallest value in the stack up to this point
+- When pushing:
+    - If the stack is empty, minValue = val.
+    - Otherwise, minValue = min(val, stack.peek().minValue).
+    - Push a new Node with (value, minValue).
+- When popping:
+    - Remove the top Node from the stack.
+- When calling top():
+    - Return stack.peek().value.
+- When calling getMin():
+    - Return stack.peek().minValue.
+- This way, getMin() is O(1) because each Node already stores the minimum up to that point.
 
-This approach ensures that brackets are matched correctly and in order.
-
-Time Complexity: O(n) — We process each character once.
-Space Complexity: O(n) — In the worst case, all characters could be opening brackets stored in the stack.
+Time Complexity: O(1) — All operations (push, pop, top, getMin) take constant time.
+Space Complexity: O(n) — We store an extra minValue for each element in the stack.
 */
+
 package StacksAndQueues.Medium;
 
 import java.util.LinkedList;
