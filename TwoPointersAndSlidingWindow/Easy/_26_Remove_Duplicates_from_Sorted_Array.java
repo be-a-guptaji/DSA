@@ -41,9 +41,9 @@ Constraints:
 1 <= nums.length <= 3 * 10^4
 -100 <= nums[i] <= 100
 nums is sorted in non-decreasing order.
-*/
+ */
 
-/*
+ /*
 Approach: This problem is efficiently solved by using a two-pointer technique, taking advantage of the fact that the array is sorted.
 
 - We initialize a pointer `index = 1` which keeps track of the position to place the next unique element.
@@ -56,11 +56,11 @@ After the loop, the first `index` elements in the array are the unique ones.
 
 Time Complexity: O(n) — we iterate through the array once.
 Space Complexity: O(1) — the algorithm uses constant extra space.
-*/
-
+ */
 package TwoPointersAndSlidingWindow.Easy;
 
 public class _26_Remove_Duplicates_from_Sorted_Array {
+
     // Method to remove duplicates in a sorted array
     public static int removeDuplicates(int[] nums) {
         // If the array is empty, there are no elements to process
@@ -85,7 +85,7 @@ public class _26_Remove_Duplicates_from_Sorted_Array {
 
     // Main method to test removeDuplicates
     public static void main(String[] args) {
-        int[] nums = { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 };
+        int[] nums = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
 
         int result = removeDuplicates(nums);
 
