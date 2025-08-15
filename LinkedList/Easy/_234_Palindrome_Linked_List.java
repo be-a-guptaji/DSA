@@ -22,13 +22,17 @@ Follow up: Could you do it in O(n) time and O(1) space?
  */
 
 /*
-Approach: This problem can be solved using Floyd’s Cycle Detection Algorithm (Tortoise and Hare approach).
-We maintain two pointers: a slow pointer that moves one step at a time, and a fast pointer that moves two steps at a time.
-If there is a cycle in the linked list, the fast pointer will eventually meet the slow pointer inside the cycle.
-If the fast pointer reaches the end of the list (null), then there is no cycle.
+Approach: We can solve this problem using the two-pointer technique combined with in-place reversal of the first half of the linked list.
+
+1. Use two pointers — `fastPointer` (moves two steps) and `slowPointer` (moves one step) — to find the middle of the list.
+2. While finding the middle, reverse the first half of the linked list in place.
+3. If the list has an odd length, skip the middle element by moving `slowPointer` one step ahead.
+4. Compare the reversed first half (`previousPointer`) with the second half (`slowPointer`) node by node.
+5. If any mismatch is found, return `false`.
+6. If all values match, return `true`.
 
 Time Complexity: O(n), where n is the number of nodes in the linked list.
-Space Complexity: O(1), as we only use two pointers and no additional data structures.
+Space Complexity: O(1), since we reverse the list in place without extra storage.
 */
 
 package LinkedList.Easy;
