@@ -21,13 +21,15 @@ The list is guaranteed to be sorted in ascending order.
  */
 
 /*
-Approach: This problem can be solved using Floyd’s Cycle Detection Algorithm (Tortoise and Hare approach).
-We maintain two pointers: a slow pointer that moves one step at a time, and a fast pointer that moves two steps at a time.
-If there is a cycle in the linked list, the fast pointer will eventually meet the slow pointer inside the cycle.
-If the fast pointer reaches the end of the list (null), then there is no cycle.
+Approach:  
+We can remove duplicates from a sorted linked list by using a single pointer to traverse it.
+Starting from the head, we compare the current node’s value with the next node’s value.
+If they are the same, we skip the next node by changing the current node’s `next` pointer to `current.next.next`.
+If they are different, we simply move the current pointer to the next node.
+Since the list is sorted, all duplicates will be adjacent, so one pass is enough.
 
 Time Complexity: O(n), where n is the number of nodes in the linked list.
-Space Complexity: O(1), as we only use two pointers and no additional data structures.
+Space Complexity: O(1), as we only use a constant amount of extra space.
 */
 
 package LinkedList.Easy;
@@ -47,18 +49,20 @@ public class _83_Remove_Duplicates_from_Sorted_List {
     // Method to remove duplicate in the linked list
     public static ListNode deleteDuplicates(ListNode head) {
         // Check for the edge case
-        if (head == null || head.next != null) {
-            return head;
+        if (head == null) {
+            return null;
         }
 
-        // Initialize two pointer for traking variable
-        ListNode previous = head, current = head.next;
+        // Initialize pointer for traking variable value
+        ListNode current = head;
 
-        while (current != null) {
-            if (previous.val == current.val) {
-                previous.next = current.next;
+        // Logic for removing duplicate nodes from the linked list
+        while (current != null && current.next != null) {
+            if (current.val == current.next.val) {
+                current.next = current.next.next; // Skip the duplicate
+            } else {
+                current = current.next;
             }
-            current = current.next;
         }
 
         // Return the modified linked list
