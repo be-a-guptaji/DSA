@@ -1,24 +1,26 @@
 /*
-LeetCode Problem: https://leetcode.com/problems/palindrome-linked-list/
+LeetCode Problem: https://leetcode.com/problems/middle-of-the-linked-list/
 
-Question: 234. Palindrome Linked List
+Question: 876. Middle of the Linked List
 
-Problem Statement: Given the head of a singly linked list, return true if it is a palindrome or false otherwise.
+Problem Statement: Given the head of a singly linked list, return the middle node of the linked list.
+
+If there are two middle nodes, return the second middle node.
 
 Example 1:
-Input: head = [1,2,2,1]
-Output: true
+Input: head = [1,2,3,4,5]
+Output: [3,4,5]
+Explanation: The middle node of the list is node 3.
 
 Example 2:
-Input: head = [1,2]
-Output: false
+Input: head = [1,2,3,4,5,6]
+Output: [4,5,6]
+Explanation: Since the list has two middle nodes with values 3 and 4, we return the second one.
 
 Constraints:
 
-The number of nodes in the list is in the range [1, 105].
-0 <= Node.val <= 9
-
-Follow up: Could you do it in O(n) time and O(1) space?
+The number of nodes in the list is in the range [1, 100].
+1 <= Node.val <= 100
  */
 
 /*
@@ -37,7 +39,7 @@ Space Complexity: O(1), since we reverse the list in place without extra storage
 
 package LinkedList.Easy;
 
-public class _234_Palindrome_Linked_List {
+public class _876_Middle_of_the_Linked_List {
     /**
      * Definition for singly-linked list.
      * public class ListNode {
@@ -50,47 +52,23 @@ public class _234_Palindrome_Linked_List {
      */
 
     // Method to find if the linked list is palindromic or not
-    public static boolean isPalindrome(ListNode head) {
+    public static ListNode middleNode(ListNode head) {
         // Check all edge cases
-        if (head == null || head.next == null) {
-            return true;
+        if (head == null) {
+            return null;
         }
 
         // Initialize two pointers for finding the middle
         ListNode fastPointer = head, slowPointer = head;
-        ListNode previousPointer = null, nextPointer;
 
         // Reverse first half while finding the middle
         while (fastPointer != null && fastPointer.next != null) {
-            // Move the fast pointer twice
+            // Move fast pointer twice and slow pointer once
+            slowPointer = slowPointer.next;
             fastPointer = fastPointer.next.next;
-
-            // Save next node before reversing
-            nextPointer = slowPointer.next;
-
-            // Reverse current node's link
-            slowPointer.next = previousPointer;
-
-            // Move previous and slow forward
-            previousPointer = slowPointer;
-            slowPointer = nextPointer;
         }
 
-        // If the list has odd length, skip the middle element
-        if (fastPointer != null) {
-            slowPointer = slowPointer.next;
-        }
-
-        // Compare reversed first half with second half
-        while (slowPointer != null && previousPointer != null) {
-            if (slowPointer.val != previousPointer.val) {
-                return false;
-            }
-            slowPointer = slowPointer.next;
-            previousPointer = previousPointer.next;
-        }
-
-        // Return true if all check are passed
+       //
         return true;
     }
 
@@ -129,16 +107,17 @@ public class _234_Palindrome_Linked_List {
         }
     }
 
-    // Main method to test isPalindrome
+    // Main method to test middleNode
     public static void main(String[] args) {
-        int[] head = { 1, 2, 2, 3, 1, 2, 2, 1 };
+        int[] head = { 1, 2, 3, 4, 5 };
 
-        boolean result = isPalindrome(makelist(head));
+        ListNode result = middleNode(makelist(head));
 
-        if (result) {
-            System.out.print("The ListNode is a palindrome.");
-        } else {
-            System.out.print("The ListNode is not a palindrome.");
+        System.out.print("The merged list is : ");
+
+        while (result != null) {
+            System.out.print(result.val + " ");
+            result = result.next;
         }
     }
 }
