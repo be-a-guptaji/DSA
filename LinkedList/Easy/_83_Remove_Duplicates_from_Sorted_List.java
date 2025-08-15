@@ -46,7 +46,22 @@ public class _83_Remove_Duplicates_from_Sorted_List {
 
     // Method to remove duplicate in the linked list
     public static ListNode deleteDuplicates(ListNode head) {
-      
+        // Check for the edge case
+        if (head == null || head.next != null) {
+            return head;
+        }
+
+        // Initialize two pointer for traking variable
+        ListNode previous = head, current = head.next;
+
+        while (current != null) {
+            if (previous.val == current.val) {
+                previous.next = current.next;
+            }
+            current = current.next;
+        }
+
+        // Return the modified linked list
         return head;
     }
 
@@ -94,7 +109,7 @@ public class _83_Remove_Duplicates_from_Sorted_List {
         System.out.print("The merged list is : ");
 
         while (result != null) {
-            System.out.print(result.val + ", ");
+            System.out.print(result.val + " ");
             result = result.next;
         }
     }

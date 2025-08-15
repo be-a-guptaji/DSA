@@ -155,7 +155,7 @@ public class _21_Merge_Two_Sorted_Lists {
         System.out.print("The merged list is : ");
 
         while (result != null) {
-            System.out.print(result.val + ", ");
+            System.out.print(result.val + " ");
             result = result.next;
         }
     }
