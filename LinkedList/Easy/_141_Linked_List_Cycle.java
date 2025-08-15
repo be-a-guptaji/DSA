@@ -128,7 +128,7 @@ public class _141_Linked_List_Cycle {
         }
     }
 
-    // Main method to test mergeTwoLists
+    // Main method to test hasCycle
     public static void main(String[] args) {
         int[] head = { 3, 2, 0, -4 };
         int pos = 1;
