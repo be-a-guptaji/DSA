@@ -24,17 +24,15 @@ The number of nodes in the list is in the range [1, 100].
  */
 
 /*
-Approach: We can solve this problem using the two-pointer technique combined with in-place reversal of the first half of the linked list.
+Approach: We can solve this by using the two-pointer technique.
 
-1. Use two pointers — `fastPointer` (moves two steps) and `slowPointer` (moves one step) — to find the middle of the list.
-2. While finding the middle, reverse the first half of the linked list in place.
-3. If the list has an odd length, skip the middle element by moving `slowPointer` one step ahead.
-4. Compare the reversed first half (`previousPointer`) with the second half (`slowPointer`) node by node.
-5. If any mismatch is found, return `false`.
-6. If all values match, return `true`.
+1. Initialize two pointers — `fastPointer` and `slowPointer` — both starting at the head.
+2. Move `fastPointer` two steps at a time and `slowPointer` one step at a time.
+3. When `fastPointer` reaches the end (null), `slowPointer` will be at the middle node.
+4. In case of an even number of nodes, `slowPointer` will point to the second middle node.
 
 Time Complexity: O(n), where n is the number of nodes in the linked list.
-Space Complexity: O(1), since we reverse the list in place without extra storage.
+Space Complexity: O(1), since only a constant amount of extra space is used.
 */
 
 package LinkedList.Easy;
@@ -51,7 +49,7 @@ public class _876_Middle_of_the_Linked_List {
      * }
      */
 
-    // Method to find if the linked list is palindromic or not
+    // Method to find middle of the linked list
     public static ListNode middleNode(ListNode head) {
         // Check all edge cases
         if (head == null) {
@@ -61,15 +59,15 @@ public class _876_Middle_of_the_Linked_List {
         // Initialize two pointers for finding the middle
         ListNode fastPointer = head, slowPointer = head;
 
-        // Reverse first half while finding the middle
+        // Logic to find the middle of the linked list
         while (fastPointer != null && fastPointer.next != null) {
             // Move fast pointer twice and slow pointer once
             slowPointer = slowPointer.next;
             fastPointer = fastPointer.next.next;
         }
 
-       //
-        return true;
+        // Return the slow pointer
+        return slowPointer;
     }
 
     // Function to convert the list into the ListNode
@@ -109,11 +107,11 @@ public class _876_Middle_of_the_Linked_List {
 
     // Main method to test middleNode
     public static void main(String[] args) {
-        int[] head = { 1, 2, 3, 4, 5 };
+        int[] head = { 1, 2, 3, 4, 5, 6 };
 
         ListNode result = middleNode(makelist(head));
 
-        System.out.print("The merged list is : ");
+        System.out.print("The middle part and onward of the linked list is : ");
 
         while (result != null) {
             System.out.print(result.val + " ");
