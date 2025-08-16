@@ -56,15 +56,17 @@ Follow up: Could you write a solution that runs in O(m + n) time and use only O(
  */
 
 /*
-Approach: We can solve this by using the two-pointer technique.
+Approach:
+1. Check for edge cases -> If either headA or headB is null then return null.
+2. Initialize two pointers currentA and currentB at headA and headB.
+3. Traverse both lists together until one reaches the end.
+   - At this point the other pointer indicates which list is longer.
+4. Create skipA and skipB to align both lists by skipping extra nodes in the longer list.
+5. Move skipA and skipB one step at a time until they meet.
+6. If they meet, return the intersection node else return null.
 
-1. Initialize two pointers — `fastPointer` and `slowPointer` — both starting at the head.
-2. Move `fastPointer` two steps at a time and `slowPointer` one step at a time.
-3. When `fastPointer` reaches the end (null), `slowPointer` will be at the middle node.
-4. In case of an even number of nodes, `slowPointer` will point to the second middle node.
-
-Time Complexity: O(n), where n is the number of nodes in the linked list.
-Space Complexity: O(1), since only a constant amount of extra space is used.
+Time Complexity -> O(m + n), where m and n are lengths of the two linked lists.
+Space Complexity -> O(1), because only constant extra pointers are used.
 */
 
 package LinkedList.Easy;
