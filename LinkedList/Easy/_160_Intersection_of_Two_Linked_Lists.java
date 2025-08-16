@@ -119,7 +119,7 @@ public class _160_Intersection_of_Two_Linked_Lists {
         }
 
         // Check for the same node in the list
-        while (skipA != skipB && skipA != null && skipB != null) {
+        while (skipA != skipB) {
             skipA = skipA.next;
             skipB = skipB.next;
         }
