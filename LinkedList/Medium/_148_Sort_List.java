@@ -28,29 +28,24 @@ Follow up: Can you sort the linked list in O(n logn) time and O(1) memory (i.e. 
 /*
 Approach:
 1. Check edge case
-   -> If the head is null or head.next is null then the list is already sorted.
-2. Find the middle node
-   -> Use slowPointer and fastPointer.
-   -> Move slow by 1 step and fast by 2 steps until fast reaches the end.
-   -> Track the node before slow using previousPointer.
-   -> Break the list into two halves by setting previousPointer.next = null.
-3. Recursively sort both halves
-   -> Call sortList on the left half (head).
-   -> Call sortList on the right half (slowPointer).
-   -> This keeps dividing the list until each part has only one node.
-4. Merge the two sorted halves
-   -> Use a dummy node to simplify merging.
-   -> Compare left and right nodes.
-   -> Append the smaller node to the merged list.
-   -> Move the pointer forward for the list from which node was taken.
-5. Handle remaining nodes
-   -> If left still has nodes, attach them.
-   -> If right still has nodes, attach them.
+   If head is null or head.next is null then the list is already sorted.
+2. Find the length of the linked list
+   Traverse the list once and count the number of nodes.
+3. Use a dummy node
+   Create a dummy node pointing to head for easier merging.
+4. Perform bottom-up merge sort
+   Start with sublists of size 1, then 2, then 4, and so on until size < length.
+   For each iteration:
+      - Split the list into left and right sublists of given size using split().
+      - Merge the two sublists using merge().
+      - Attach the merged list to the previous node.
+5. Continue until the whole list is merged
+   The list becomes fully sorted after log n passes.
 6. Return the sorted list
-   -> Return head.next (skipping the dummy node).
+   Return dummy.next as the head of the sorted list.
 
 Time Complexity: O(n log n)
-Space Complexity: O(log n) due to recursion stack
+Space Complexity: O(1) because sorting is done iteratively in place
 */
 
 package LinkedList.Medium;
@@ -69,39 +64,70 @@ public class _148_Sort_List {
 
     // Method to sort the linked list
     public static ListNode sortList(ListNode head) {
-        // Check the edge case
+        // Edge case check when list is empty or has only one node
         if (head == null || head.next == null) {
             return head;
         }
 
-        // Initialize two pointers for the traversing
-        ListNode previousPointer = head, slowPointer = head, fastPointer = head;
-
-        // Traverse the linked list for finding the middle
-        while (fastPointer != null && fastPointer.next != null) {
-            previousPointer = slowPointer;
-            slowPointer = slowPointer.next;
-            fastPointer = fastPointer.next.next;
+        // Find the length of the linked list
+        int length = 0;
+        ListNode current = head;
+        while (current != null) {
+            length++;
+            current = current.next;
         }
 
-        // Make the last node of first half point to null
-        previousPointer.next = null;
+        // Dummy node for easier merging
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
 
-        // Reccusively call the sort until the sorted list is size of one
-        ListNode left = sortList(head);
-        ListNode right = sortList(slowPointer);
+        // Logic for bottom up merge sort
+        for (int step = 1; step < length; step *= 2) {
+            ListNode prev = dummy;
+            current = dummy.next;
 
-        // Merge both the list and return that
-        return merge(left, right);
+            while (current != null) {
+                // Left sublist head
+                ListNode left = current;
+
+                // Right sublist head obtained by splitting
+                ListNode right = split(left, step);
+
+                // Next sublist start obtained by splitting again
+                current = split(right, step);
+
+                // Merge left and right sublists, connect to prev
+                prev = merge(left, right, prev);
+            }
+        }
+
+        // Return the head of the fully sorted linked list
+        return dummy.next;
     }
-    
-    // Helper function for merging the two list
-    public static ListNode merge(ListNode left, ListNode right) {
-        // Initialize variable for merging
-        ListNode head = new ListNode(Integer.MIN_VALUE);
+
+    // Helper function to split the node
+    private static ListNode split(ListNode head, int size) {
+        // Return if head is empty
+        if (head == null)
+            return null;
+
+        // Get all the requied nodes for the sublist
+        for (int i = 1; head.next != null && i < size; i++) {
+            head = head.next;
+        }
+
+        // Get the next node and terminate the current linked list
+        ListNode next = head.next;
+        head.next = null;
+
+        // Retrun the head of the next sublist
+        return next;
+    }
+
+    // Helper function to merge the left and right list to the head
+    private static ListNode merge(ListNode left, ListNode right, ListNode head) {
         ListNode current = head;
 
-        // Merge the list until one extinguish
         while (left != null && right != null) {
             if (left.val < right.val) {
                 current.next = left;
@@ -110,31 +136,19 @@ public class _148_Sort_List {
                 current.next = right;
                 right = right.next;
             }
-
-            // Move the pointer
             current = current.next;
         }
 
-        // Extinguish the left
-        while (left != null) {
-            current.next = left;
+        // Attach remaining nodes from either list
+        current.next = (left != null) ? left : right;
 
-            // Move the pointers
-            left = left.next;
+        // Move current pointer to the end of merged list
+        while (current.next != null) {
             current = current.next;
         }
 
-        // Extinguish the right
-        while (right != null) {
-            current.next = right;
-
-            // Move the pointer
-            right = right.next;
-            current = current.next;
-        }
-
-        // Return the head of the list
-        return head.next;
+        // Return the head of the linked list
+        return current;
     }
 
     // Function to convert the list into the ListNode
