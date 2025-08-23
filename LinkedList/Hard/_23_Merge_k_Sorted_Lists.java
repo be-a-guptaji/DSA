@@ -120,7 +120,7 @@ public class _23_Merge_k_Sorted_Lists {
     }
 
     // Function to convert int[][] into an array of ListNode
-    public static ListNode[] makeList(int[][] lists) {
+    public static ListNode[] makelist(int[][] lists) {
         if (lists.length == 0) {
             return new ListNode[0]; // Handle empty input
         }
@@ -170,7 +170,7 @@ public class _23_Merge_k_Sorted_Lists {
     public static void main(String[] args) {
         int[][] lists = { { 1, 4, 5 }, { 1, 3, 4 }, { 2, 6 } };
 
-        ListNode result = mergeKLists(makeList(lists));
+        ListNode result = mergeKLists(makelist(lists));
 
         System.out.print("The linked list after mergeing is : ");
 
