@@ -25,22 +25,21 @@ Follow up: Could you solve it both recursively and iteratively?
 Approach:
 1. Handle edge case
    - If root is null, return true because an empty tree is symmetric.
-2. Use two queues for BFS traversal
-   - Push root.left into tree1 and root.right into tree2.
-3. Traverse both sides simultaneously
-   - While both queues are not empty:
-       a) Poll one node from each queue.
-       b) If both are null, continue.
-       c) If one is null and the other is not, return false.
-       d) If values differ, return false.
-       e) Push children in mirrored order:
-          - tree1 → left first, then right.
-          - tree2 → right first, then left.
-4. Final check
-   - After traversal, both queues must be empty for symmetry to hold.
+2. Use recursion to compare left and right subtrees
+   - Define helper function isEqual(p, q):
+       a) If both p and q are null → return true.
+       b) If one is null and the other not → return false.
+       c) If p.val != q.val → return false.
+       d) Otherwise recursively check:
+          - p.left with q.right
+          - p.right with q.left
+3. The main function
+   - Calls isEqual(root.left, root.right).
 
 Time Complexity: O(n), Each node is visited once.
-Space Complexity: O(n), In worst case (perfect binary tree), queues can hold O(n/2) ≈ O(n) nodes.
+Space Complexity: O(h)
+   Due to recursion stack, where h = height of tree.  
+   In worst case (skewed tree) O(n), in balanced tree O(log n).
 */
 
 package Trees.Easy;
@@ -72,38 +71,26 @@ public class _101_Symmetric_Tree {
             return true;
         }
 
-        // Queues for BFS
-        Queue<TreeNode> tree1 = new LinkedList<>();
-        Queue<TreeNode> tree2 = new LinkedList<>();
+        // Retrun the recursive function
+        return isEqual(root.left, root.right);
+    }
 
-        // Push the root of the tree
-        tree1.offer(root.left);
-        tree2.offer(root.right);
-
-        // Traverse both trees simultaneously
-        while (!tree1.isEmpty() && !tree2.isEmpty()) {
-            TreeNode node1 = tree1.poll();
-            TreeNode node2 = tree2.poll();
-
-            if (node1 == null && node2 == null) {
-                continue; // both are null, skip
-            }
-            if (node1 == null || node2 == null) {
-                return false; // one null, one not
-            }
-            if (node1.val != node2.val) {
-                return false; // different values
-            }
-
-            // Push children
-            tree1.offer(node1.left);
-            tree1.offer(node1.right);
-            tree2.offer(node2.right);
-            tree2.offer(node2.left);
+    // Helper fuction for cheking the node value
+    private static boolean isEqual(TreeNode p, TreeNode q) {
+        if (p == null && q == null) {
+            return true;
         }
 
-        // Both queues must be empty
-        return tree1.isEmpty() && tree2.isEmpty();
+        if (p == null || q == null) {
+            return false; // Values are different
+        }
+
+        if (p.val != q.val) {
+            return false; // different values
+        }
+
+        // Traverse the more tree
+        return (p.val == q.val && isEqual(p.left, q.right) && isEqual(p.right, q.left));
     }
 
     // Build tree from int[] (no nulls, complete binary tree)
