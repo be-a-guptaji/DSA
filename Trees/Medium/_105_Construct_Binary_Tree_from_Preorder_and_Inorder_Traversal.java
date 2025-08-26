@@ -25,28 +25,18 @@ inorder is guaranteed to be the inorder traversal of the tree.
 */
 
 /*
-Approach :
-1. Edge case check
-   - If preorder or inorder array is empty, return null.
-2. Preprocessing with HashMap
-   - Store each value of inorder with its index in a HashMap for O(1) lookups.
-3. Recursive function
-   - Use preorder[preStart] as the root.
-   - Find the root index in inorder using the HashMap.
-   - Calculate number of nodes in the left subtree.
-4. Divide and conquer
-   - Recursively build the left subtree using:
-     preorder[preStart+1 ... preStart+leftNodes], 
-     inorder[inStart ... inRootIndex-1].
-   - Recursively build the right subtree using:
-     preorder[preStart+leftNodes+1 ... preEnd], 
-     inorder[inRootIndex+1 ... inEnd].
-5. Return the root
-   - After recursively constructing left and right, return root.
+Approach:
+1. Reset preorder index pIndex to 0.
+2. Build a HashMap mapping inorder values to indices for O(1) lookup.
+3. Recursively construct the tree:
+   - Use preorder[pIndex] as the root and increment pIndex.
+   - Look up root position in inorder (inRootIndex).
+   - Recursively build left subtree from inorder[inStart..inRootIndex-1].
+   - Recursively build right subtree from inorder[inRootIndex+1..inEnd].
+4. Return the constructed root.
 
-Time Complexity: O(n), Each node is processed once, and HashMap lookup is O(1).  
-
-Space Complexity: O(n), HashMap for inorder + recursion stack.
+Time Complexity: O(n)   (each node is processed once)
+Space Complexity: O(n)  (HashMap + recursion stack)
 */
 
 package Trees.Medium;
@@ -71,50 +61,48 @@ public class _105_Construct_Binary_Tree_from_Preorder_and_Inorder_Traversal {
      * }
      */
 
+    // Private variable for tracking the value of the pIndex
+    private static int pIndex = 0;
+
     // Method to build tree from preorder and inorder
     public static TreeNode buildTree(int[] preorder, int[] inorder) {
-        // Edge case check
+        // Reset pIndex for multiple calls correctness
+        pIndex = 0;
+
+        // Edge case
         if (preorder == null || inorder == null || preorder.length == 0 || inorder.length == 0) {
             return null;
         }
 
-        // Map to store inorder value -> index for quick lookup
+        // Create a map for the inorder array value -> index
         Map<Integer, Integer> inorderMap = new HashMap<>();
         for (int i = 0; i < inorder.length; i++) {
             inorderMap.put(inorder[i], i);
         }
 
-        // Use recursion with preorder index
-        return build(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1, inorderMap);
+        // Start recursive build with full inorder range
+        return build(preorder, 0, inorder.length - 1, inorderMap);
     }
 
-    // Helper function for recursive tree building
-    private static TreeNode build(int[] preorder, int preStart, int preEnd,
-            int[] inorder, int inStart, int inEnd,
-            Map<Integer, Integer> inorderMap) {
-
-        // Base case
-        if (preStart > preEnd || inStart > inEnd) {
+    // Helper function to make the tree
+    private static TreeNode build(int[] preorder, int inStart, int inEnd, Map<Integer, Integer> inorderMap) {
+        // Base case: no nodes in this inorder range
+        if (inStart > inEnd) {
             return null;
         }
 
-        // First element in preorder is the root
-        TreeNode root = new TreeNode(preorder[preStart]);
+        // Take next value from preorder as root
+        int rootVal = preorder[pIndex++];
+        TreeNode root = new TreeNode(rootVal);
 
-        // Find the index of root in inorder
-        int inRootIndex = inorderMap.get(root.val);
+        // Find root index in inorder using map
+        int inRootIndex = inorderMap.get(rootVal);
 
-        // Number of nodes in left subtree
-        int leftNodes = inRootIndex - inStart;
+        // Build left and right subtrees using inorder ranges
+        root.left = build(preorder, inStart, inRootIndex - 1, inorderMap);
+        root.right = build(preorder, inRootIndex + 1, inEnd, inorderMap);
 
-        // Build left and right subtrees recursively
-        root.left = build(preorder, preStart + 1, preStart + leftNodes,
-                inorder, inStart, inRootIndex - 1, inorderMap);
-
-        root.right = build(preorder, preStart + leftNodes + 1, preEnd,
-                inorder, inRootIndex + 1, inEnd, inorderMap);
-
-        // Return the root of the tree
+        // Return the root
         return root;
     }
 
