@@ -166,20 +166,8 @@ public class _114_Flatten_Binary_Tree_to_Linked_List {
     public static void main(String[] args) {
         int[] root = { 1, 2, 5, 3, 4, -1, 6 };
 
-        TreeNode node = makeTree(root);
-
-        flatten(node);
+        flatten(makeTree(root));
 
         System.out.println("The tree is flatten succesfully.");
-
-        while (node != null) {
-            System.out.print(node.val + " ");
-            node = node.right;
-        }
-        // int[] root = { 1, 2, 5, 3, 4, -1, 6 };
-
-        // flatten( makeTree(root));
-
-        // System.out.println("The tree is flatten succesfully.");
     }
 }
