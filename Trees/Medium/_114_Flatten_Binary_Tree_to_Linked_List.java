@@ -79,8 +79,9 @@ public class _114_Flatten_Binary_Tree_to_Linked_List {
     // Helper function to flatten the tree
     private static TreeNode flattenTheTree(TreeNode root) {
         // Check the edge case
-        if (root == null)
+        if (root == null) {
             return null;
+        }
 
         // Flatten left and right subtrees
         TreeNode leftTail = flattenTheTree(root.left);
