@@ -37,16 +37,16 @@ The depth of the tree will not exceed 10.
 */
 
 /* 
-Approach :
-1. Start from the root node and keep track of a number formed so far.
-2. At each node, update the number = number * 10 + node.val.
-3. If we reach a leaf node (both left and right are null), return this number 
-   as it represents a complete root-to-leaf path.
-4. Otherwise, recursively call for the left and right child and sum their results.
-5. The final answer is the sum of all numbers formed from every root-to-leaf path.
+Approach:
+1. Start from the root node and initialize the number as 0.
+2. At each step, update the number = number * 10 + root.val.
+3. If the current node is a leaf (both left and right are null), return the number because it represents a complete root-to-leaf number.
+4. Otherwise, recursively call for left and right children and return their sum.
+5. The final result will be the total sum of all root-to-leaf numbers.
 
-Time Complexity: O(n), Each node is visited exactly once.
-Space Complexity: O(h), h = height of tree → recursion stack space (O(log n) for balanced tree, O(n) for skewed tree).
+Time Complexity  : O(n), since every node is visited exactly once.
+Space Complexity : O(h), where h is the height of the tree 
+                   → O(log n) for a balanced tree, O(n) for a skewed tree.
 */
 
 package Trees.Medium;
@@ -86,7 +86,7 @@ public class _129_Sum_Root_to_Leaf_Numbers {
     private static int sumFromRootToLeafNode(TreeNode root, int number) {
         // Check the edge case
         if (root == null) {
-            return number;
+            return 0;
         }
 
         // Modified the number
