@@ -180,4 +180,6 @@ MIT License © 2025 Be-A-Guptaji DSA
 
 ---
 
-Feel free to explore the repository and contribute your own solutions or improvements!
+### ⭐ Show some love!
+
+If you like this project, **give it a star ⭐ on GitHub**!
