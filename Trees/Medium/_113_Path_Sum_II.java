@@ -43,10 +43,9 @@ Approach:
    to correctly build other paths.
 7. Finally, return the result list containing all valid paths.
 
-Complexity:
-- Time Complexity: O(N²) in the worst case  
+Time Complexity: O(N²) in the worst case  
   (Each node is visited once → O(N), but for every valid path we may copy up to O(N) nodes).
-- Space Complexity: O(N) for recursion stack + O(N) for current path list.  
+Space Complexity: O(N) for recursion stack + O(N) for current path list.  
   In the worst case (skewed tree), recursion depth = N.
 */
 
