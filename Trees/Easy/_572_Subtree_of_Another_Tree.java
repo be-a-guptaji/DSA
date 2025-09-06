@@ -19,8 +19,8 @@ Constraints:
 
 The number of nodes in the root tree is in the range [1, 2000].
 The number of nodes in the subRoot tree is in the range [1, 1000].
--104 <= root.val <= 104
--104 <= subRoot.val <= 104
+-10^4 <= root.val <= 10^4
+-10^4 <= subRoot.val <= 10^4
 */
 
 /*
