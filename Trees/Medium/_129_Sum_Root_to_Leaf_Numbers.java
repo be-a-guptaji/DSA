@@ -45,8 +45,7 @@ Approach:
 5. The final result will be the total sum of all root-to-leaf numbers.
 
 Time Complexity  : O(n), since every node is visited exactly once.
-Space Complexity : O(h), where h is the height of the tree 
-                   → O(log n) for a balanced tree, O(n) for a skewed tree.
+Space Complexity : O(h), where h is the height of the tree O(log n) for a balanced tree, O(n) for a skewed tree.
 */
 
 package Trees.Medium;
