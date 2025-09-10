@@ -127,6 +127,7 @@ public class _297_Serialize_and_Deserialize_Binary_Tree {
 
             // Traverse the whole queue
             while (!queue.isEmpty() && index < value.length) {
+                // Get the node form the queue
                 TreeNode node = queue.poll();
 
                 // Left child
