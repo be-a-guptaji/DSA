@@ -1,5 +1,5 @@
 /*
-LeetCode Problem: https://leetcode.com/problems/binary-tree-maximum-path-sum
+LeetCode Problem: https://leetcode.com/problems/binary-tree-maximum-path-sum/
 
 Question: 124. Binary Tree Maximum Path Sum
 
