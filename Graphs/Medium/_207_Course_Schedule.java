@@ -88,7 +88,7 @@ public class _207_Course_Schedule {
         // Initialize queue for the BSF Traversal of the graph
         Queue<Integer> queue = new LinkedList<>();
 
-        // Do the BSF Traversal of the graph using the queue
+        // Add all nodes to the queue
         for (int i = 0; i < numCourses; i++) {
             if (indegree[i] == 0) {
                 queue.add(i);
@@ -98,7 +98,7 @@ public class _207_Course_Schedule {
         // Initialize a new list for the topological sort of the graph
         ArrayList<Integer> topologicalSort = new ArrayList<>();
 
-        // Traverse the graph untill the queue is empty
+        // Do the BSF Traverse of the graph untill the queue is empty
         while (!queue.isEmpty()) {
             // Retrieve the first number of the queue
             int node = queue.remove();
