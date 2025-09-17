@@ -57,7 +57,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class _207_Course_Schedule {
-    // Method to find the number of island in the grid
+    // Method to find if we can finish the courses or not
     public static boolean canFinish(int numCourses, int[][] prerequisites) {
         // Initialize adjacency list for the graph
         ArrayList<ArrayList<Integer>> adjancencyList = new ArrayList<>();
