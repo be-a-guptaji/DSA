@@ -154,6 +154,6 @@ public class _417_Pacific_Atlantic_Water_Flow {
 
         List<List<Integer>> result = pacificAtlantic(heights);
 
-        System.out.print("The result of the following queries are : " + result);
+        System.out.print("The cell which can reach both the oceans are : " + result);
     }
 }
