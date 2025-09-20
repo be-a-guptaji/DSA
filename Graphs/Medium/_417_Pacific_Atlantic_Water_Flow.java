@@ -46,27 +46,27 @@ n == heights[r].length
 
 /*
 Approach:
-1. Represent the equations as a bidirectional weighted graph:
-   - Each variable is a node.
-   - An equation "a / b = k" is represented as:
-        edge a → b with weight k,
-        edge b → a with weight 1/k.
-2. Store the graph in an adjacency list using a HashMap<String, List<Edge>>.
-3. For each query [x, y]:
-   - If x or y does not exist in the graph, return -1.
-   - If x == y, return 1.
-   - Otherwise, run BFS (or DFS) from x to y:
-       • Start with weight = 1 at source.
-       • Traverse neighbors, multiplying edge weights along the path.
-       • If target is reached, return the accumulated weight.
-   - If no path is found, return -1.
-4. Collect the answers for all queries in the result array.
+1. The problem is reversed: instead of checking if water from a cell can reach the oceans,
+   we check from the oceans which cells water can flow into.
+   - Water can only flow from higher/equal height to lower/equal height.
+2. Create two boolean matrices:
+   - pacific[r][c] = true if the cell (r, c) can reach the Pacific Ocean.
+   - atlantic[r][c] = true if the cell (r, c) can reach the Atlantic Ocean.
+3. Perform DFS/BFS starting from:
+   - Pacific borders (top row and left column).
+   - Atlantic borders (bottom row and right column).
+   During traversal, move from the current cell to its neighbors if the neighbor's
+   height >= current cell height (reverse flow condition).
+4. After traversals, iterate through all cells:
+   - If a cell is reachable by both oceans (pacific[r][c] && atlantic[r][c]),
+     add it to the result list.
+5. Return the list of all such cells.
 
-Time Complexity: O(Q * (V + E))  
-- Q = number of queries, V = number of unique variables, E = number of equations.  
-- Each BFS explores at most all edges once per query.
-Space Complexity: O(V + E)  
-- Adjacency list + visited set + BFS queue.
+Time Complexity:
+- O(m * n), where m and n are the grid dimensions (each cell is visited at most twice).
+Space Complexity:
+- O(m * n) for the two visited arrays and recursion stack (DFS).
+- Can be O(m * n) without recursion depth if BFS is used instead.
 */
 
 package Graphs.Medium;
