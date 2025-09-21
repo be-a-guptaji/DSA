@@ -73,6 +73,7 @@ public class _785_Is_Graph_Bipartite {
 
             // Offer the node to the queue
             queue.offer(i);
+            
             // Assign first color
             colors[i] = 1;
 
