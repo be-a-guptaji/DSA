@@ -84,6 +84,8 @@ public class _743_Network_Delay_Time {
 
         // Priority queue for Dijkstra: [node, currentTime]
         PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> a[1] - b[1]);
+
+        // Offer source node k to the queue
         minHeap.offer(new int[] { k, 0 });
 
         // Traverse the graph until the queue is empty
