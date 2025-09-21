@@ -32,24 +32,25 @@ All the pairs (ui, vi) are unique. (i.e., no multiple edges.)
 
 /*
 Approach:
-1. Model the network as a weighted directed graph using an adjacency list.
-   - Each edge [u, v, w] represents travel time w from node u to node v.
-2. Initialize an array `minimumTime` to store the shortest time to reach each node.
+1. Model the network as a weighted directed graph using an adjacency list:
+   - Each edge [u, v, w] represents a travel time w from node u to node v.
+2. Initialize an array minimumTime[] to store the shortest known time to reach each node:
    - Set all values to Integer.MAX_VALUE initially.
-   - Set `minimumTime[k] = 0` for the source node k.
-3. Use Dijkstra's algorithm with a priority queue (min-heap):
-   - The queue stores [node, currentTime].
-   - Pop the node with the smallest currentTime from the queue.
-   - For each neighbor, calculate cumulative time: `newTime = currentTime + edgeWeight`.
-   - If `newTime < minimumTime[neighbor]`, update `minimumTime[neighbor]` and add [neighbor, newTime] to the queue.
-4. After traversing all reachable nodes:
-   - If any node’s time remains Integer.MAX_VALUE, it is unreachable → return -1.
-   - Otherwise, return the maximum value in `minimumTime`, which represents the total network delay.
-   
-Time Complexity:
-- O(E log V), where E = number of edges, V = number of nodes (priority queue operations).  
-Space Complexity:
-- O(V + E) for adjacency list and priority queue.
+   - Set the source node k time to 0.
+3. Use a priority queue (min-heap) to implement Dijkstra's algorithm:
+   - Each queue element is [node, currentTime].
+   - Always process the node with the smallest currentTime first.
+4. For each node polled from the queue:
+   - Skip it if we already have a shorter path in minimumTime.
+   - For each neighbor, calculate the new cumulative time.
+   - If the new time is smaller than minimumTime[neighbor], update it and push into the queue.
+5. After processing all reachable nodes:
+   - Iterate through minimumTime[] to find the maximum time needed to reach any node.
+   - If any node remains at Integer.MAX_VALUE, return -1 (unreachable node).
+   - Otherwise, return the maximum cumulative time.
+
+Time Complexity: O(E log V), where E = number of edges, V = number of nodes.  
+Space Complexity: O(V + E) for adjacency list and priority queue.
 */
 
 package Graphs.Medium;
@@ -59,7 +60,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 public class _743_Network_Delay_Time {
-    // Method to find the minimum time to reach all node in the graph
+    // Method to find the minimum time to reach all nodes in the graph
     public static int networkDelayTime(int[][] times, int n, int k) {
         // Initialize adjacency list for the graph
         List<List<int[]>> adjacencyList = new ArrayList<>();
@@ -67,13 +68,13 @@ public class _743_Network_Delay_Time {
         // Array to store shortest time to each node
         int[] minimumTime = new int[n + 1];
 
-        // Add number of list equal to the n
+        // Add number of lists equal to the number of nodes
         for (int i = 0; i <= n; i++) {
             adjacencyList.add(new ArrayList<>());
-            minimumTime[i] = Integer.MAX_VALUE;
+            minimumTime[i] = Integer.MAX_VALUE; // Initialize all times to infinity
         }
 
-        // Make the adjacency list according to the [neighbor, weight]
+        // Build adjacency list according to [neighbor, weight]
         for (int[] edge : times) {
             adjacencyList.get(edge[0]).add(new int[] { edge[1], edge[2] });
         }
@@ -83,18 +84,15 @@ public class _743_Network_Delay_Time {
 
         // Priority queue for Dijkstra: [node, currentTime]
         PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> a[1] - b[1]);
-
-        // Offer the source node k to queue
         minHeap.offer(new int[] { k, 0 });
 
-        // Traveres the graph untill the queue is empty
+        // Traverse the graph until the queue is empty
         while (!minHeap.isEmpty()) {
-            // Get the minimum value of the queue
             int[] current = minHeap.poll();
             int node = current[0];
             int time = current[1];
 
-            // Skip if we already have a better time
+            // Skip if we already have a shorter path
             if (time > minimumTime[node]) {
                 continue;
             }
@@ -116,9 +114,8 @@ public class _743_Network_Delay_Time {
         // Find the maximum delay time
         int result = 0;
 
-        // Find the minimum time needed to reach to the all nodes
         for (int i = 1; i <= n; i++) {
-            // unreachable node
+            // If a node is unreachable, return -1
             if (minimumTime[i] == Integer.MAX_VALUE) {
                 return -1;
             }
