@@ -59,7 +59,7 @@ import java.util.List;
 import java.util.Queue;
 
 public class _841_Keys_and_Rooms {
-    // Method to find if the graph is bipartited or not
+    // Method to find if all the rooms can be opened or not
     public static boolean canVisitAllRooms(List<List<Integer>> rooms) {
         // Initialize the size of the rooms
         int size = rooms.size();
