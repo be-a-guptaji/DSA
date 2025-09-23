@@ -81,6 +81,7 @@ public class _785_Is_Graph_Bipartite {
             while (!queue.isEmpty()) {
                 // Get the node from the queue
                 int node = queue.poll();
+                
                 for (int neighbor : graph[node]) {
                     // If neighbor has color 0 then color it opposite to the node
                     if (colors[neighbor] == 0) {
