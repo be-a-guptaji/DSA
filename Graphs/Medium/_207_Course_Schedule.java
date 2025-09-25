@@ -60,11 +60,11 @@ public class _207_Course_Schedule {
     // Method to find if we can finish the courses or not
     public static boolean canFinish(int numCourses, int[][] prerequisites) {
         // Initialize adjacency list for the graph
-        ArrayList<ArrayList<Integer>> adjancencyList = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> adjacencyList = new ArrayList<>();
 
         // Add number of list equal to the number of courses
         for (int i = 0; i < numCourses; i++) {
-            adjancencyList.add(new ArrayList<>());
+            adjacencyList.add(new ArrayList<>());
         }
 
         // Get the prerequisites length
@@ -72,7 +72,7 @@ public class _207_Course_Schedule {
 
         // Make the adjacency list according to the first value of prerequisites
         for (int i = 0; i < len; i++) {
-            adjancencyList.get(prerequisites[i][0]).add(prerequisites[i][1]);
+            adjacencyList.get(prerequisites[i][0]).add(prerequisites[i][1]);
         }
 
         // Initialize a in degree for the for the graph node
@@ -80,7 +80,7 @@ public class _207_Course_Schedule {
 
         // Fill the total indegree of each node
         for (int i = 0; i < numCourses; i++) {
-            for (int node : adjancencyList.get(i)) {
+            for (int node : adjacencyList.get(i)) {
                 indegree[node]++;
             }
         }
@@ -107,7 +107,7 @@ public class _207_Course_Schedule {
             topologicalSort.add(node);
 
             // Remove the indegree of the node as it is in our topological sort
-            for (int val : adjancencyList.get(node)) {
+            for (int val : adjacencyList.get(node)) {
                 indegree[val]--;
                 if (indegree[val] == 0) {
                     queue.add(val);
