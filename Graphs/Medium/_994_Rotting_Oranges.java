@@ -146,6 +146,5 @@ public class _994_Rotting_Oranges {
         int result = orangesRotting(grid);
 
         System.out.println("All oranges can be rotten in : " + result);
-
     }
 }
