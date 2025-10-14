@@ -57,32 +57,33 @@ Space Complexity: O(1), No additional space is needed.
 package DynamicProgramming.Medium;
 
 public class _152_Maximum_Product_Subarray {
-  // Method to find the subarray which have the maximum product
-  public static int maxProduct(int[] nums) {
-    // Check the edge case
-    if (nums == null || nums.length == 0) {
-      return 0;
+    // Method to find the subarray which have the maximum product
+    public static int maxProduct(int[] nums) {
+        // Check the edge case
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+
+        // Initialize the maxSoFar, maxEndingHere and minEndingHere with the first index
+        // of the array and size of the array
+        int maxSoFar = nums[0], maxEndingHere = nums[0], minEndingHere = nums[0], size = nums.length;
+
+        for (int i = 1; i < size; i++) {
+            // Get the maxEndingHere and the min ending
+            int temp1 = maxEndingHere * nums[i];
+            int temp2 = minEndingHere * nums[i];
+
+            // Update the maxEndingHere and the minEndingHere
+            maxEndingHere = Math.max(nums[i], Math.max(temp1, temp2));
+            minEndingHere = Math.min(nums[i], Math.min(temp1, temp2));
+
+            // Update the maxSoFar
+            maxSoFar = Math.max(maxSoFar, maxEndingHere);
+        }
+
+        // Return the maxSoFar
+        return maxSoFar;
     }
-
-    // Initialize the maxSoFar, maxEndingHere and minEndingHere with the first index
-    // of the array and size of the array
-    int maxSoFar = nums[0], maxEndingHere = nums[0], minEndingHere = nums[0], size = nums.length;
-
-    for (int i = 1; i < size; i++) {
-      // Get the maxEndingHere
-      int temp = maxEndingHere;
-
-      // Update the maxEndingHere and the minEndingHere
-      maxEndingHere = Math.max(nums[i], Math.max(maxEndingHere * nums[i], minEndingHere * nums[i]));
-      minEndingHere = Math.min(nums[i], Math.min(temp * nums[i], minEndingHere * nums[i]));
-
-      // Update the maxSoFar
-      maxSoFar = Math.max(maxSoFar, maxEndingHere);
-    }
-
-    // Return the maxSoFar
-    return maxSoFar;
-  }
 
   // Main method to test maxProduct
   public static void main(String[] args) {
