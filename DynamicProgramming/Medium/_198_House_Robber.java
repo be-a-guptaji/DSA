@@ -63,11 +63,6 @@ public class _198_House_Robber {
   // Method to find the maximum amount of money you can rob tonight without
   // alerting the police
   public static int rob(int[] nums) {
-    // Edge case check
-    if (nums == null || nums.length == 0) {
-      return 0;
-    }
-
     // Initialize the size of the array
     int size = nums.length;
 
