@@ -28,9 +28,7 @@ We use **backtracking** to generate all valid combinations of parentheses.
 3. When both `open` and `close` equal `n`, we have a valid combination.
 4. This recursively explores all valid sequences in a depth-first manner.
 
-Time Complexity: O(2^n)
-- At each step, we have two choices — add '(' or ')'. So the total recursive calls grow exponentially.
-
+Time Complexity: O(2^n), At each step, we have two choices — add '(' or ')'. So the total recursive calls grow exponentially.
 Space Complexity: O(n) for the recursion stack and O(2^n * n) for storing results.
 */
 
