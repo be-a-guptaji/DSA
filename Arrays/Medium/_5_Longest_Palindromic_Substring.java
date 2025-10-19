@@ -69,6 +69,6 @@ public class _5_Longest_Palindromic_Substring {
 
         String result = longestPalindrome(s);
 
-        System.out.println("The length of the longest substring without repeating characters is: " + result);
+        System.out.println("The length of the longest substring is: " + result);
     }
 }
