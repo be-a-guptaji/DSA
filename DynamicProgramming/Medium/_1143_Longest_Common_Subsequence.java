@@ -51,7 +51,7 @@ Space Complexity: O(m * n), for storing the DP table.
 package DynamicProgramming.Medium;
 
 public class _1143_Longest_Common_Subsequence {
-  // Method to find longest common subsequence
+  // Method to find the longest common subsequence
   public static int longestCommonSubsequence(String text1, String text2) {
     // Get the length of both the text
     int len1 = text1.length(), len2 = text2.length();
