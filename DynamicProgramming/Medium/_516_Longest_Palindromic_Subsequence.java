@@ -24,21 +24,21 @@ s consists only of lowercase English letters.
 */
 
 /*
-Approach: We reduce the problem of finding the **Longest Palindromic Subsequence (LPS)** to the **Longest Common Subsequence (LCS)** problem.
+Approach: We solve the Longest Palindromic Subsequence (LPS) problem by reducing it to a Longest Common Subsequence (LCS) problem.
 
-1. A palindromic subsequence reads the same forward and backward.
-2. Therefore, the LPS of a string `s` is the same as the LCS between `s` and its reverse.
-3. We reverse the string and compute the LCS between the original and the reversed string.
-4. Use a 2D DP table `dp[len + 1][len + 1]`, where `dp[i][j]` stores the LCS length between:
-   - `s1[i:]` (original string from index i)
-   - `s2[j:]` (reversed string from index j)
-5. Fill the DP table in bottom-up fashion:
-   - If characters match: `dp[i][j] = 1 + dp[i+1][j+1]`
-   - Else: `dp[i][j] = max(dp[i+1][j], dp[i][j+1])`
-6. The final answer is in `dp[0][0]`, representing the LPS of the full string.
+1. A palindromic subsequence is a sequence that reads the same forward and backward.
+2. The LPS of a string `s` is equal to the LCS of `s` and its reversed version.
+3. So, we reverse the input string and compute the LCS between the original and reversed strings.
+4. We use a 2D DP table `dp[n][n]`, where `dp[i][j]` represents the length of the LCS between:
+   - the suffix of original string starting at index `i`
+   - and the suffix of reversed string starting at index `j`
+5. We fill the table in bottom-up fashion:
+   - If `s1[i] == s2[j]`, then `dp[i][j] = 1 + dp[i+1][j+1]`
+   - Else, `dp[i][j] = max(dp[i+1][j], dp[i][j+1])`
+6. The result is stored in `dp[0][0]`, which gives the length of the longest palindromic subsequence.
 
 Time Complexity: O(n^2), where `n` is the length of the string.
-Space Complexity: O(n^2), for storing the DP table.
+Space Complexity: O(n^2), due to the DP table.
 */
 
 package DynamicProgramming.Medium;
@@ -66,7 +66,7 @@ public class _516_Longest_Palindromic_Subsequence {
     // Initialize the dp matrix
     int[][] dp = new int[len + 1][len + 1];
 
-    // Find the length of the longest common subsequence in bottom up manner
+    // Find the length of the longest palindromic subsequence in bottom up manner
     for (int i = len - 1; i >= 0; i--) {
       for (int j = len - 1; j >= 0; j--) {
         // If character match then get the digonal element + 1 else max of the right and
