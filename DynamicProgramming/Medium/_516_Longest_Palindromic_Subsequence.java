@@ -44,7 +44,7 @@ Space Complexity: O(n^2), for storing the DP table.
 package DynamicProgramming.Medium;
 
 public class _516_Longest_Palindromic_Subsequence {
-  // Method to find longest palindromic subsequence
+  // Method to find the longest palindromic subsequence
   public static int longestPalindromeSubseq(String s) {
     // Get the length of both the text
     int len = s.length();
