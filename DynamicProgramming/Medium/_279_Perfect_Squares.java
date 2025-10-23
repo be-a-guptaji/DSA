@@ -54,6 +54,8 @@ public class _279_Perfect_Squares {
     if (dp[10000] == 0) {
       // Fill the dp with the Integer.MAX_VALUE
       Arrays.fill(dp, Integer.MAX_VALUE);
+
+      // Set the base dp[0] to 0
       dp[0] = 0;
 
       for (int i = 1; i < 10001; i++) {
