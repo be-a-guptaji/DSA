@@ -65,8 +65,8 @@ public class _300_Longest_Increasing_Subsequence {
       // Get the current value
       int current = nums[i];
 
-      // Traverse the array in right to left fashion untill we find the strictly
-      // lesser element than the current element
+      // Traverse the array untill we find the strictly lesser element than the
+      // current element
       for (int j = 0; j < i; j++) {
         // If we find the element then update the dp array
         if (nums[j] < current) {
