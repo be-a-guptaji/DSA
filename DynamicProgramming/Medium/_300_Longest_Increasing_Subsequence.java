@@ -52,8 +52,7 @@ Space Complexity: O(n), due to the `dp` array.
 package DynamicProgramming.Medium;
 
 public class _300_Longest_Increasing_Subsequence {
-  // Method to find the maximum amount of money you can rob tonight without
-  // alerting the police
+  // Method to find the longest increasing subsequence
   public static int lengthOfLIS(int[] nums) {
     // Initialize size of the nums array
     int size = nums.length;
@@ -94,6 +93,6 @@ public class _300_Longest_Increasing_Subsequence {
 
     int result = lengthOfLIS(nums);
 
-    System.out.println("The maximum amount of money you can rob tonight without alerting the police is : " + result);
+    System.out.println("The longest increasing subsequence is : " + result);
   }
 }
