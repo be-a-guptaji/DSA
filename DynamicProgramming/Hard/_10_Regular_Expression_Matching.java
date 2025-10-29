@@ -67,6 +67,7 @@ public class _10_Regular_Expression_Matching {
         // Initialize the dp matrix for the memoization
         Boolean[][] dp = new Boolean[slen + 1][plen + 1];
 
+        // Return the dfs recursive function
         return dfs(s, p, slen, plen, 0, 0, dp);
     }
 
