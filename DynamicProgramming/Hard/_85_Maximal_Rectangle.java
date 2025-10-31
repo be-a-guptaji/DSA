@@ -104,7 +104,7 @@ public class _85_Maximal_Rectangle {
         // Iterate over the histograms to get the maximal area
         for (int i = 0; i <= n; i++) {
             // Get the area of the histogram from the remaing stack
-            while (!stack.isEmpty() && (i == n || histograms[stack.peek()] >= histograms[i])) {
+            while (!stack.isEmpty() && (i == n || histograms[stack.peek()] > histograms[i])) {
                 // Get the smallest height of the histogram
                 int height = histograms[stack.peek()];
 
@@ -112,14 +112,7 @@ public class _85_Maximal_Rectangle {
                 stack.pop();
 
                 // Intialize the width of the rectangle
-                int width;
-
-                // Initilize the width of the reactangle
-                if (stack.isEmpty()) {
-                    width = 1;
-                } else {
-                    width = i - stack.size() - 1;
-                }
+                int width = stack.isEmpty() ? i : i - stack.peek() - 1;
 
                 // Upadate the max area to the max value for the area
                 maxArea = Math.max(maxArea, height * width);
