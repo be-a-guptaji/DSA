@@ -123,7 +123,7 @@ public class _920_Number_of_Music_Playlists {
         return dp[currentGoal][oldSongs] = (int) (result % 1_000_000_007);
     }
 
-    // Main method to test mergeStones
+    // Main method to test numMusicPlaylists
     public static void main(String[] args) {
         int n = 3, goal = 3, k = 1;
 
