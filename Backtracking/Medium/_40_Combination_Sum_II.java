@@ -79,14 +79,14 @@ public class _40_Combination_Sum_II {
         }
 
         // Start the recursive backtracking process to generate combinations
-        backtrack1(frequency, target, res, new ArrayList<>(), 0);
+        backtrack(frequency, target, res, new ArrayList<>(), 0);
 
         // Return the final list of unique combinations
         return res;
     }
 
     // Helper recursive method to generate valid combinations that sum to the target
-    private static void backtrack1(int[] frequency, int target, List<List<Integer>> res, List<Integer> currComb,
+    private static void backtrack(int[] frequency, int target, List<List<Integer>> res, List<Integer> currComb,
             int idx) {
         // Base case: if the remaining target becomes negative, stop further recursion
         if (target < 0)
@@ -113,7 +113,7 @@ public class _40_Combination_Sum_II {
 
                 // Recursive call with reduced target and same index
                 // (allows use of the same number until frequency is exhausted)
-                backtrack1(frequency, target - i, res, currComb, i);
+                backtrack(frequency, target - i, res, currComb, i);
 
                 // Remove the last added number to backtrack and explore other possibilities
                 currComb.removeLast();
