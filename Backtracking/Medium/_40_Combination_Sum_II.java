@@ -88,7 +88,6 @@ public class _40_Combination_Sum_II {
     // Helper recursive method to generate valid combinations that sum to the target
     private static void backtrack1(int[] frequency, int target, List<List<Integer>> res, List<Integer> currComb,
             int idx) {
-
         // Base case: if the remaining target becomes negative, stop further recursion
         if (target < 0)
             return;
