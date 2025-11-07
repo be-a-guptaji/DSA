@@ -55,7 +55,7 @@ import java.util.List;
 public class _46_Permutations {
     // Method to find all the list of all unique combinations of numbers
     public static List<List<Integer>> permute(int[] nums) {
-        // Initialize a frequency array to store if the number is used or not
+        // Initialize a seen array to store if the number is used or not
         boolean[] seen = new boolean[21];
 
         // Set the seen index to true if it is in the nums
