@@ -24,27 +24,26 @@ All the numbers of nums are unique.
 
 /*
 Approach:
-1. We are given an integer array `nums` containing **unique elements**, and we must find all possible 
-   subsets (the power set).
+1. We are given an integer array `nums` that contains unique elements.
+   The goal is to find all possible subsets (the power set).
+2. This problem can be solved efficiently using **backtracking**.
+3. The core idea:
+   - At each recursion level, decide whether to include or exclude each element starting from a given index.
+   - Each recursive call builds upon the current subset and explores all future possibilities.
+4. Algorithm steps:
+   • Start with an empty subset.
+   • Add the current subset to the result list (since every subset—including empty—must be included).
+   • Iterate from the current index `i` to the end of the array:
+       - Add `nums[i]` to the current subset.
+       - Recursively call the function with `i + 1` to explore subsets that include `nums[i]`.
+       - Remove `nums[i]` after the recursive call (backtrack) to explore subsets without it.
+5. This ensures that:
+   - All unique subsets are generated.
+   - The order of elements is maintained.
+   - No duplicate subsets are formed since `nums` contains unique elements.
 
-2. This is a **classic backtracking problem** where at each step we have two choices:
-   - Include the current element in the subset.
-   - Exclude the current element and move to the next.
-
-3. The algorithm uses **recursive DFS (backtracking)** to explore all inclusion/exclusion possibilities:
-   - Start from index `0` with an empty subset.
-   - For every element `nums[index]`, make two recursive calls:
-       • One including `nums[index]` in the current subset.
-       • One excluding it.
-   - When we reach the end of the array (`index == nums.length`), we add the formed subset to the result.
-
-4. This ensures all possible subsets are generated, including the empty set `[]`.
-
-5. Since all numbers in `nums` are unique, there is no need for duplicate handling (no sorting or frequency map needed).
-
-Time Complexity: O(2^N), where N = number of elements in `nums`, 
-                 since each element can either be included or excluded.
-Space Complexity: O(N) for recursion depth and temporary subset storage.
+Time Complexity: O(2^N), where N = length of `nums`, since each element can either be included or excluded.
+Space Complexity: O(N) for the recursion stack and temporary subset storage.
 */
 
 package Backtracking.Medium;
@@ -70,22 +69,19 @@ public class _78_Subsets {
     private static void backtrack(int[] nums, int index, List<Integer> subset, List<List<Integer>> list) {
         // Base case if index is greater then the nums length then add the subset to the
         // list and return
-        if (nums.length == index) {
-            list.add(new ArrayList<>(subset));
-            return;
+        list.add(new ArrayList<>(subset));
+
+        // Iterate over the nums array to generate subset
+        for (int i = index; i < nums.length; i++) {
+            // Add the current value index to the subset
+            subset.add(nums[i]);
+
+            // Backtrack when the index is choosen
+            backtrack(nums, i + 1, subset, list);
+
+            // Remove the current index form the subset
+            subset.removeLast();
         }
-
-        // Add the current value index to the subset
-        subset.add(nums[index]);
-
-        // Backtrack when the index is choosen
-        backtrack(nums, index + 1, subset, list);
-
-        // Remove the current index form the subset
-        subset.removeLast();
-
-        // Backtrack when the index is not choosen
-        backtrack(nums, index + 1, subset, list);
     }
 
     // Main method to test subsets
