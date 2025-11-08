@@ -81,8 +81,7 @@ public class _90_Subsets_II {
     // Helper method to find all unique subset
     private static void backtrack(int index, int[] frequency, List<Integer> subset,
             List<List<Integer>> list) {
-        // Base case if index is greater then the nums length then add the subset to the
-        // list and return
+        // Add the subset to the list
         list.add(new ArrayList<>(subset));
 
         // Iterate over the nums array to generate subset
