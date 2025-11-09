@@ -1,32 +1,21 @@
 /*
-LeetCode Problem: https://leetcode.com/problems/beautiful-arrangement/
+LeetCode Problem: https://leetcode.com/problems/unique-binary-search-trees-ii/
 
-Question: 526. Beautiful Arrangement
+Question: 95. Unique Binary Search Trees II
 
-Problem Statement: Suppose you have n integers labeled 1 through n. A permutation of those n integers perm (1-indexed) is considered a beautiful arrangement if for every i (1 <= i <= n), either of the following is true:
-
-perm[i] is divisible by i.
-i is divisible by perm[i].
-Given an integer n, return the number of the beautiful arrangements that you can construct.
+Problem Statement: Given an integer n, return all the structurally unique BST's (binary search trees), which has exactly n nodes of unique values from 1 to n. Return the answer in any order.
 
 Example 1:
-Input: n = 2
-Output: 2
-Explanation: 
-The first beautiful arrangement is [1,2]:
-    - perm[1] = 1 is divisible by i = 1
-    - perm[2] = 2 is divisible by i = 2
-The second beautiful arrangement is [2,1]:
-    - perm[1] = 2 is divisible by i = 1
-    - i = 2 is divisible by perm[2] = 1
+Input: n = 3
+Output: [[1,null,2,null,3],[1,null,3,2],[2,1,3],[3,1,null,null,2],[3,2,null,1]]
 
 Example 2:
 Input: n = 1
-Output: 1
+Output: [[1]]
 
 Constraints:
 
-1 <= n <= 15
+1 <= n <= 8
  */
 
 /*
@@ -68,53 +57,52 @@ Space Complexity: O(N) for the recursion stack and array storage.
 
 package Backtracking.Medium;
 
-public class _526_Beautiful_Arrangement {
-   // Initialize the variable to store the total number of beautiful arrangements
+public class _95_Unique_Binary_Search_Trees_II {
+   // Initialize the arrangements to return the value
    private static int arrangements;
 
-   // Method to find the number of possible beautiful arrangements
+   // Method to find the number of the beautiful arrangements
    public static int countArrangement(int n) {
-      // Initialize the array of size n + 1 to store numbers from 1 to n
+      // Initialize the array of the size n
       int[] nums = new int[n + 1];
 
-      // Fill the array with values from 1 to n
+      // Fill the array form 0 to n - 1
       for (int i = 1; i <= n; i++) {
          nums[i] = i;
       }
 
-      // Initialize the total arrangements count to zero
+      // Initialize the arrangements as the zero
       arrangements = 0;
 
-      // Start the recursive backtracking process to generate valid arrangements
+      // Call the recursive backtrack method to find the arrangments
       backtrack(nums, n);
 
-      // Return the total count of beautiful arrangements
+      // Return the result
       return arrangements;
    }
 
-   // Helper method to generate and count all valid beautiful arrangements
+   // Helper method to find the arrangements
    private static void backtrack(int[] nums, int value) {
-      // Base case: if all positions are filled, increment the arrangements count
+      // Edge case if value is equal to zero then increment the arrangements value and
+      // return
       if (value == 0) {
          arrangements++;
          return;
       }
 
-      // Iterate over all numbers in the current range
+      // Iterate over all the values
       for (int i = value; i > 0; i--) {
-         // Swap the current number to the position being filled
+         // Swap the numbers in the nums array
          int temp = nums[i];
          nums[i] = nums[value];
          nums[value] = temp;
 
-         // Check the beautiful condition for the current position
-         // Proceed only if the divisibility condition holds
-         if (nums[value] % value == 0 || value % nums[value] == 0) {
-            // Recursively call the backtrack method for the next position
+         // Make a recursive backtrack call if i % value == 0 or value % i == 0
+         if (i % value == 0 || value % i == 0) {
             backtrack(nums, value - 1);
          }
 
-         // Restore the original order by swapping back to backtrack
+         // Restore the value of the nums array before swapping
          nums[value] = nums[i];
          nums[i] = temp;
       }
