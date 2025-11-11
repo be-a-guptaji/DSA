@@ -25,10 +25,8 @@ Constraints:
 Approach:
 1. We are given an integer `n` and must count the total number of distinct ways to place `n` queens 
    on an `n x n` chessboard so that no two queens attack each other.
-
 2. This problem is solved using **backtracking with pruning** — similar to the N-Queens arrangement problem,
    but instead of returning all valid boards, we simply count them.
-
 3. Key Idea:
    - Each queen must occupy one unique row and one unique column.
    - We maintain three boolean arrays to track attacks:
@@ -36,7 +34,6 @@ Approach:
        • `diag1[row - col + n]` → marks if a main diagonal (↘) is under attack.
        • `diag2[row + col]` → marks if an anti-diagonal (↙) is under attack.
    - Using these arrays allows O(1) checks for attacks instead of scanning the entire board.
-
 4. Recursive Strategy:
    • Start placing queens from row 0.
    • For each column `c` in the current row:
@@ -45,13 +42,10 @@ Approach:
        - Recurse to the next row.
        - After recursion, remove the queen and unmark to explore other configurations (backtrack).
    • When all rows are filled (`row == n`), increment the global `totalArrangement` counter.
-
 5. Optimization:
    - For `n = 2` or `n = 3`, there are no valid queen placements, 
      so directly return 0 to save computation.
-
 6. The board matrix is optional — used only for clarity, not required for counting.
-
 7. This approach ensures:
    - Every unique valid configuration is counted exactly once.
    - Invalid paths are pruned early using boolean arrays.
