@@ -98,7 +98,6 @@ public class _51_N_Queens {
 
         // Make a recursive backtrack call to find the arrangement of queens
         backtrack(0, n, board, col, diag1, diag2, result);
-        makeList(board);
 
         // Retrun the result
         return result;
