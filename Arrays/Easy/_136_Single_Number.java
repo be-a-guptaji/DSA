@@ -53,17 +53,12 @@ package Arrays.Easy;
 public class _136_Single_Number {
     // Method to find the single number in the array
     public static int singleNumber(int[] nums) {
-        // Edge case if nums length is one
-        if (nums.length == 1) {
-            return nums[0];
-        }
-
         // Initialize the number for the XOR operation
         int xor = nums[0];
 
         // Iterate over the nums array and xor it with every element
         for (int i = 1; i < nums.length; i++) {
-            xor = xor ^ nums[i];
+            xor ^= nums[i];
         }
 
         // Return the xor
