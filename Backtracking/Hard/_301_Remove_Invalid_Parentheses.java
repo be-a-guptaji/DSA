@@ -28,139 +28,130 @@ There will be at most 20 parentheses in s.
 
 /*
 Approach:
-1. We are given a string `s` that may contain invalid parentheses.  
-   The goal is to remove the *minimum number* of parentheses so that all resulting strings are valid.
+1. We are given a string that may contain invalid '(' and ')'. The goal is to remove the minimum
+   number of invalid parentheses so that the result contains only valid parentheses combinations.
 
-2. This problem is solved using **Breadth-First Search (BFS)** instead of backtracking:
-   - BFS explores all possible strings by removing one parenthesis at each step.
-   - The moment we find valid strings at a level, we stop going deeper because
-     BFS guarantees that this level corresponds to the *minimum removals*.
+2. To solve this, we first count:
+     → extraOpen  = number of '(' that must be removed
+     → extraClose = number of ')' that must be removed
+   This count helps us know exactly how many removals to make.
 
-3. BFS Algorithm:
-   • Push the original string into a queue and mark it as visited.  
-   • While queue is not empty:
-       - Pop one string and check if it is valid.
-       - If valid:
-           → Add it to the result list.
-           → Mark that we found a valid level and stop processing deeper levels.
-       - If not valid and no solution found yet:
-           → Generate all strings obtained by removing exactly one '(' or ')'.
-           → Add these new strings into the queue (if not visited before).
+3. Once we know how many to remove, we use a DFS backtracking approach:
+   - At each character we have two choices:
+       • Remove it   (only if it is '(' or ')' and removals are still available)
+       • Keep it     (add it to the current expression)
 
-4. Validity check:
-   • Traverse the string and maintain a counter.
-   • Increment on '(' and decrement on ')'.
-   • If counter becomes negative → invalid.
-   • At end, counter must be zero for valid string.
+4. While keeping characters:
+   - Maintain a `balance` variable:
+       • Increment for '('
+       • Decrement for ')'
+     If balance becomes negative, it means ')' are more than '(' → invalid state → prune.
 
-5. BFS guarantees:
-   - The first valid level gives all strings with minimum removals.
-   - No duplicates because we track visited strings.
-   - No need for global variables or recursion.
+5. The recursive DFS will explore all valid placements of parentheses while ensuring:
+     • Minimum removals
+     • Balanced parentheses
+     • No duplicates (handled by avoiding consecutive removal of same type)
 
-Time Complexity: O(2^N) in worst case due to BFS expansion.  
-Space Complexity: O(2^N) for queue + visited set.
+6. When the entire string is processed:
+   - Only expressions with zero remaining removals AND balance == 0 are considered valid.
+   - These valid expressions are added to the final list.
+
+Time Complexity:
+   Exponential in worst case due to DFS, but heavily pruned by removal counts and balance checks.
+
+Space Complexity:
+   O(N) for recursion stack + O(N) for building valid expressions.
 */
 
 package Backtracking.Hard;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
-import java.util.Set;
 
 public class _301_Remove_Invalid_Parentheses {
-    // Method to find the list of unique strings that are valid with the minimum
-    // number of removals
-    public static List<String> removeInvalidParentheses(String s) {
-        // Initialize the list to store all valid strings
-        List<String> result = new ArrayList<>();
+   // List to store all the valid expressions
+  private static List<String> validExpressions;
 
-        // Base case: if the string is null, return an empty list
-        if (s == null) {
-            return result;
+  // Method to remove minimum invalid parentheses and return valid expressions
+  public static List<String> removeInvalidParentheses(String s) {
+
+    // Initialize variables to count extra '(' and extra ')'
+    int extraOpen = 0, extraClose = 0;
+
+    // Count the number of misplaced open and close parentheses
+    for (char ch : s.toCharArray()) {
+      if (ch == '(') {
+        extraOpen++;
+      } else if (ch == ')') {
+        // If there's an unmatched '(', pair it
+        if (extraOpen > 0) {
+          extraOpen--;
         }
-
-        // Initialize the visited set to avoid duplicate processing
-        Set<String> visited = new HashSet<>();
-
-        // Initialize the queue for BFS traversal
-        Queue<String> queue = new LinkedList<>();
-
-        // Add the original string to the queue and mark as visited
-        queue.add(s);
-        visited.add(s);
-
-        // Boolean to indicate when a valid level is found
-        boolean found = false;
-
-        // Start the BFS traversal
-        while (!queue.isEmpty()) {
-            String current = queue.poll();
-
-            // If the current string is valid, add it to the result list
-            if (isValid(current)) {
-                result.add(current);
-                found = true;
-            }
-
-            // If a valid string is found, do not process further levels
-            if (found) {
-                continue;
-            }
-
-            // Generate all possible strings by removing one parenthesis
-            for (int i = 0; i < current.length(); i++) {
-                char ch = current.charAt(i);
-
-                // Skip non-parenthesis characters
-                if (ch != '(' && ch != ')') {
-                    continue;
-                }
-
-                // Form a new string by removing the current parenthesis
-                String next = current.substring(0, i) + current.substring(i + 1);
-
-                // Add the new string to the queue if not already visited
-                if (!visited.contains(next)) {
-                    queue.add(next);
-                    visited.add(next);
-                }
-            }
+        // Otherwise, this is an extra ')'
+        else {
+          extraClose++;
         }
-
-        // If no valid string is found, return an empty string
-        if (result.isEmpty()) {
-            result.add("");
-        }
-
-        // Return the final list of valid strings
-        return result;
+      }
     }
 
-    // Helper method to check if the string is valid
-    private static boolean isValid(String s) {
-        // Initialize the counter to track balance
-        int count = 0;
+    // Initialize the validExpressions
+    validExpressions = new ArrayList<>();
 
-        // Traverse the entire string
-        for (char ch : s.toCharArray()) {
-            if (ch == '(') {
-                count++;
-            } else if (ch == ')') {
-                // If there are more closing brackets than opening, return false
-                if (count == 0) {
-                    return false;
-                }
-                count--;
-            }
-        }
+    // Start the recursive backtracking process to generate valid expressions
+    // The new char[] will hold the final expression of correct length
+    backtrack(s, 0, new char[s.length() - extraOpen - extraClose], 0, extraOpen, extraClose, 0);
 
-        // Return true only if all parentheses are balanced
-        return count == 0;
+    // Return the list of valid expressions
+    return validExpressions;
+  }
+
+  // Helper method to generate valid expressions using DFS + backtracking
+  private static void backtrack(String s, int index, char[] curr, int currIndex,
+      int openRem, int closeRem, int balance) {
+
+    // Base case: if the removals or balance go invalid then return
+    if (openRem < 0 || closeRem < 0 || balance < 0) {
+      return;
     }
+
+    // If the complete string is processed
+    if (index == s.length()) {
+      // Valid only when no removals are left
+      if (openRem == 0 && closeRem == 0) {
+        validExpressions.add(new String(curr));
+      }
+      return;
+    }
+
+    char ch = s.charAt(index);
+
+    // Case 1: Remove '('
+    if (ch == '(' && openRem > 0 && (currIndex == 0 || curr[currIndex - 1] != '(')) {
+      backtrack(s, index + 1, curr, currIndex, openRem - 1, closeRem, balance);
+    }
+
+    // Case 2: Remove ')'
+    if (ch == ')' && closeRem > 0 && (currIndex == 0 || curr[currIndex - 1] != ')')) {
+      backtrack(s, index + 1, curr, currIndex, openRem, closeRem - 1, balance);
+    }
+
+    // Case 3: Keep the current character
+    if (currIndex < curr.length) {
+
+      // Add character to the current expression
+      curr[currIndex] = ch;
+
+      // Update the balance if parenthesis is added
+      if (ch == '(') {
+        balance++;
+      } else if (ch == ')') {
+        balance--;
+      }
+
+      // Move ahead in the recursion
+      backtrack(s, index + 1, curr, currIndex + 1, openRem, closeRem, balance);
+    }
+  }
 
     // Main method to test removeInvalidParentheses
     public static void main(String[] args) {
