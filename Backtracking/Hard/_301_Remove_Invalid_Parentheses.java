@@ -74,7 +74,6 @@ public class _301_Remove_Invalid_Parentheses {
 
   // Method to remove minimum invalid parentheses and return valid expressions
   public static List<String> removeInvalidParentheses(String s) {
-
     // Initialize variables to count extra '(' and extra ')'
     int extraOpen = 0, extraClose = 0;
 
