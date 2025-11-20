@@ -96,7 +96,7 @@ public class _208_Implement_Trie_Prefix_Tree {
             this.letter = new Trie[26];
 
             // Set the isEnd variable to false
-            isEnd = false;
+            this.isEnd = false;
         }
 
         public void insert(String word) {
