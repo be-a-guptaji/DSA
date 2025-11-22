@@ -114,7 +114,7 @@ public class _528_Random_Pick_with_Weight {
             // Build the prefix sum array
             for (int i = 0; i < length; i++) {
                 sum += w[i];
-                prefixSum[i] = sum;
+                this.prefixSum[i] = sum;
             }
 
             // Store the total sum
@@ -123,16 +123,16 @@ public class _528_Random_Pick_with_Weight {
 
         public int pickIndex() {
             // Generate a random number between 1 and totalSum
-            int random = ThreadLocalRandom.current().nextInt(1, totalSum + 1);
+            int random = ThreadLocalRandom.current().nextInt(1, this.totalSum + 1);
 
             // Initialize left and right for binary search
-            int left = 0, right = prefixSum.length - 1;
+            int left = 0, right = this.prefixSum.length - 1;
 
             // Find the first index where prefixSum[index] >= random
             while (left < right) {
                 int mid = (left + right) / 2;
 
-                if (prefixSum[mid] >= random) {
+                if (this.prefixSum[mid] >= random) {
                     right = mid;
                 } else {
                     left = mid + 1;
