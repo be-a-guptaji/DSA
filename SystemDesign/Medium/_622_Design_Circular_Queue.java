@@ -251,5 +251,4 @@ public class _622_Design_Circular_Queue {
             }
         }
     }
-
 }
