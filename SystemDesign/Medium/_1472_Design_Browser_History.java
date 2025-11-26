@@ -89,7 +89,6 @@ Time Complexity:
        • visit:   O(1)
        • back:    O(steps)
        • forward: O(steps)
-
 Space Complexity: O(n), where n is the number of visited pages stored.
 */
 
