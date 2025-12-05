@@ -101,6 +101,5 @@ public class _20_Valid_Parentheses {
         } else {
             System.out.println("The given string " + s + " is not a valid parentheses");
         }
-
     }
 }
