@@ -68,7 +68,6 @@ public class _435_Non_overlapping_Intervals {
     // Method to find the minimum number of intervals to remove
     // so that the remaining intervals do not overlap
     public static int eraseOverlapIntervals(int[][] intervals) {
-
         // If there are no intervals, no removals are needed
         if (intervals.length == 0) {
             return 0;
@@ -85,14 +84,11 @@ public class _435_Non_overlapping_Intervals {
 
         // Iterate through the intervals starting from the second one
         for (int i = 1; i < intervals.length; i++) {
-
             // If the current interval overlaps with the previous one
             if (intervals[i][0] < previousEnd) {
-
                 // Increment the removal count
                 removals++;
             } else {
-
                 // Update the previous end time as there is no overlap
                 previousEnd = intervals[i][1];
             }
