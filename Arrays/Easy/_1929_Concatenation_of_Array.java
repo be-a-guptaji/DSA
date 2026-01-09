@@ -60,14 +60,14 @@ public class _1929_Concatenation_of_Array {
     // Method to concatenate a array twice
     public static int[] getConcatenation(int[] nums) {
         // Get the length of the array
-        int lenght = nums.length;
+        int length = nums.length;
 
         // Initialize the new array twice of its length
-        int[] result = new int[2 * lenght];
+        int[] result = new int[2 * length];
 
         // Iterate over the nums array to concatenate the array
-        for (int i = 0; i < lenght; i++) {
-            result[i] = result[lenght + i] = nums[i];
+        for (int i = 0; i < length; i++) {
+            result[i] = result[length + i] = nums[i];
         }
 
         // Return the result
