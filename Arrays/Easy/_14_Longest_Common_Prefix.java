@@ -24,33 +24,33 @@ strs[i] consists of only lowercase English letters if it is non-empty.
 */
 
 /*
-Approach: Single Pass with Last Zero Tracking
+Approach: Incremental Prefix Comparison (Greedy)
 
 Goal:
-Find the maximum number of consecutive 1’s in a binary array.
+Find the longest common prefix shared by all strings in the array.
 
 Key Idea:
-Track the index of the most recent zero and compute the length of the current
-streak of 1’s using index differences.
+Use the first string as the initial prefix and iteratively trim it by comparing
+with each subsequent string.
 
 Algorithm:
-1. Initialize:
-   - startingIndex = -1 (acts as the index before the array start)
-   - maxConsecutiveOnes = 0
-2. Traverse the array:
-   - If nums[i] == 0:
-       startingIndex = i   (reset streak start)
-   - Else:
-       currentStreak = i - startingIndex
-       maxConsecutiveOnes = max(maxConsecutiveOnes, currentStreak)
-3. Return maxConsecutiveOnes.
+1. Initialize a StringBuilder with the first string as the candidate prefix.
+2. For each remaining string:
+   - Compare characters from the beginning with the current prefix.
+   - Stop when characters differ or either string ends.
+   - Delete the unmatched suffix from the prefix.
+3. If the prefix becomes empty, stop early.
+4. Return the remaining prefix.
 
 Why It Works:
-- The distance from the last zero gives the current run of 1’s.
-- A single pass is sufficient.
+- The longest common prefix can only decrease as more strings are compared.
+- Greedy shrinking ensures correctness and simplicity.
 
-Time Complexity: O(n)  
-Space Complexity: O(1)
+Time Complexity: O(n × m)
+- n = number of strings
+- m = length of the shortest string
+
+Space Complexity: O(1) extra space
 */
 
 package Arrays.Easy;
