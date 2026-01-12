@@ -3,35 +3,24 @@ LeetCode Problem: https://leetcode.com/problems/can-place-flowers/
 
 Question: 605. Can Place Flowers
 
-Problem Statement: Given two strings s and t, determine if they are isomorphic.
+Problem Statement: You have a long flowerbed in which some of the plots are planted, and some are not. However, flowers cannot be planted in adjacent plots.
 
-Two strings s and t are isomorphic if the characters in s can be replaced to get t.
-
-All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character, but a character may map to itself.
+Given an integer array flowerbed containing 0's and 1's, where 0 means empty and 1 means not empty, and an integer n, return true if n new flowers can be planted in the flowerbed without violating the no-adjacent-flowers rule and false otherwise.
 
 Example 1:
-Input: s = "egg", t = "add"
+Input: flowerbed = [1,0,0,0,1], n = 1
 Output: true
-Explanation:
-The strings s and t can be made identical by:
-Mapping 'e' to 'a'.
-Mapping 'g' to 'd'.
 
 Example 2:
-Input: s = "foo", t = "bar"
+Input: flowerbed = [1,0,0,0,1], n = 2
 Output: false
-Explanation:
-The strings s and t can not be made identical as 'o' needs to be mapped to both 'a' and 'r'.
-
-Example 3:
-Input: s = "paper", t = "title"
-Output: true
 
 Constraints:
 
-1 <= s.length <= 5 * 104
-t.length == s.length
-s and t consist of any valid ascii character.
+1 <= flowerbed.length <= 2 * 10^4
+flowerbed[i] is 0 or 1.
+There are no two adjacent flowers in flowerbed.
+0 <= n <= flowerbed.length
 */
 
 /*
