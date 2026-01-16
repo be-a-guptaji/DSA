@@ -79,7 +79,7 @@ public class _706_Design_HashMap {
 
         public MyHashMap() {
             // Initialize the memory array of 1000001 size
-            memory = new Integer[1000001];
+            this.memory = new Integer[1000001];
         }
 
         public void put(int key, int value) {
@@ -89,12 +89,12 @@ public class _706_Design_HashMap {
 
         public int get(int key) {
             // Return the value at the key index
-            return memory[key] == null ? -1 : memory[key];
+            return this.memory[key] == null ? -1 : this.memory[key];
         }
 
         public void remove(int key) {
             // Set the key value to -1
-            memory[key] = null;
+            this.memory[key] = null;
         }
     }
 
