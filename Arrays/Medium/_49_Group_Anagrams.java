@@ -72,6 +72,7 @@ public class _49_Group_Anagrams {
         return new ArrayList<>(map.values());
     }
 
+    // Main method to test groupAnagrams
     public static void main(String[] args) {
         String[] s = { "eat", "tea", "tan", "ate", "nat", "bat" };
 
