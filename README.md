@@ -42,29 +42,60 @@ graph TD
 Example folder structure:
 
 ```
+DSA:
 ├── LICENSE
 ├── .gitignore
-├── Topic-A/
-│   ├── Easy/
-│   │   ├── Problem1.java
-│   │   ├── Problem2.java
-│   │   ├── ...
-│   ├── Medium/
-│   │   ├── Problem3.java
-│   │   ├── ...
-│   ├── Hard/
-│   │   ├── Problem6.java
-│   │   ├── ...
-├── Topic-B/
-│   ├── Easy/
-│   │   ├── Problem8.java
-│   │   ├── ...
-│   ├── Medium/
-│   │   ├── Problem9.java
-│   │   ├── ...
-│   ├── Hard/
-│   │   ├── Problem11.java
-│   │   ├── ...
+├───Arrays
+│   ├───Easy
+│   ├───Hard
+│   └───Medium
+├───Backtracking
+│   ├───Hard
+│   └───Medium
+├───BinarySearchAndSorting
+│   ├───Easy
+│   ├───Hard
+│   └───Medium
+├───BitManipulation
+│   ├───Easy
+│   └───Medium
+├───DynamicProgramming
+│   ├───Easy
+│   ├───Hard
+│   └───Medium
+├───Graphs
+│   ├───Easy
+│   ├───Hard
+│   └───Medium
+├───Greedy
+│   ├───Hard
+│   └───Medium
+├───HeapsAndPriorityQueues
+│   ├───Hard
+│   └───Medium
+├───LinkedList
+│   ├───Easy
+│   ├───Hard
+│   └───Medium
+├───Maths
+│   ├───Easy
+│   └───Medium
+├───StacksAndQueues
+│   ├───Easy
+│   ├───Hard
+│   └───Medium
+├───SystemDesign
+│   ├───Easy
+│   ├───Hard
+│   └───Medium
+├───Trees
+│   ├───Easy
+│   ├───Hard
+│   └───Medium
+└───TwoPointersAndSlidingWindow
+    ├───Easy
+    ├───Hard
+    └───Medium
 ```
 
 ---
