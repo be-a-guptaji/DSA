@@ -123,7 +123,7 @@ class Solution extends GuessGame {
 }
 
 public class _374_Guess_Number_Higher_or_Lower {
-  // Main method to test countOfAtoms
+  // Main method to test guessNumber
   public static void main(String[] args) {
     int n = 1;
 
