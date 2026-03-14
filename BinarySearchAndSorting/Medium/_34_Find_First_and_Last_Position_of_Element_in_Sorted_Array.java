@@ -30,20 +30,21 @@ nums is a non-decreasing array.
  */
 
  /*
-Approach: This problem can be solved efficiently using **binary search** since the array is sorted.
-
+ Approach: This problem can be solved efficiently using **binary search** since the array is sorted.
+ 
    - We initialize two pointers: left = 0, right = nums.length - 1
    - We perform binary search to find the target:
    - If nums[mid] == target: return mid
    - If nums[mid] < target: search the right half
    - If nums[mid] > target: search the left half
    - If the target is not found, left will represent the index where the target should be inserted.
-
+ 
    This works because binary search helps us narrow down the position quickly in O(log n) time.
     
-Time Complexity: O(log n) — because binary search divides the array in half each iteration
-Space Complexity: O(1) — no additional space is used
+ Time Complexity: O(log n) — because binary search divides the array in half each iteration
+ Space Complexity: O(1) — no additional space is used
  */
+
 package BinarySearchAndSorting.Medium;
 
 import java.util.Arrays;
