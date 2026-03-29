@@ -65,6 +65,7 @@ Space Complexity:
 Result:
 - Returns the maximum candies each child can receive.
 */
+
 package BinarySearchAndSorting.Medium;
 
 // Solution Class
