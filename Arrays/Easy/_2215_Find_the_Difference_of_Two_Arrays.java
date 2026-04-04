@@ -138,7 +138,7 @@ class Solution {
 }
 
 public class _2215_Find_the_Difference_of_Two_Arrays {
-    // Main method to test arraySign
+    // Main method to test findDifference
     public static void main(String[] args) {
         int[] nums1 = new int[] { 1, 2, 3 };
         int[] nums2 = new int[] { 2, 4, 6 };
