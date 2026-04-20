@@ -24,7 +24,7 @@ Example 2:
 Input: rectangles = [[4,5],[7,8]]
 Output: 0
 Explanation: There are no interchangeable pairs of rectangles.
- 
+
 Constraints:
 n == rectangles.length
 1 <= n <= 10^5
