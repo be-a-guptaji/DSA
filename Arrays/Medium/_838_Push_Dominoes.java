@@ -101,6 +101,7 @@ class Solution {
       } else {
         force = force == Integer.MAX_VALUE ? Integer.MAX_VALUE : force + 1;
       }
+
       // Update the right[i] to the force
       right[i] = force;
     }
@@ -118,6 +119,7 @@ class Solution {
       } else {
         force = force == Integer.MAX_VALUE ? Integer.MAX_VALUE : force + 1;
       }
+
       // Update the left[i] to the force
       left[i] = force;
     }
