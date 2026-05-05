@@ -35,7 +35,7 @@ pattern contains only lower-case English letters.
 s contains only lowercase English letters and spaces ' '.
 s does not contain any leading or trailing spaces.
 All the words in s are separated by a single space.
- */
+*/
 
 /*
 Approach: Bidirectional Mapping (Pattern → Word)
