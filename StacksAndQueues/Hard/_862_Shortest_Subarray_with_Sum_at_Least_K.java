@@ -1,5 +1,5 @@
 /*
-LeetCode Problem: https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/description/
+LeetCode Problem: https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/
 
 Question: 862. Shortest Subarray with Sum at Least K
 
