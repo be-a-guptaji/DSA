@@ -1,5 +1,5 @@
 /*
-LeetCode Problem: https://leetcode.com/problems/number-of-atoms/description/
+LeetCode Problem: https://leetcode.com/problems/number-of-atoms/
 
 Question: 726. Number of Atoms
 
