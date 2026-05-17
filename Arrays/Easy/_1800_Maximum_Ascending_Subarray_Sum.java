@@ -1,5 +1,5 @@
 /*
-LeetCode Problem: https://leetcode.com/problems/maximum-ascending-subarray-sum/description/
+LeetCode Problem: https://leetcode.com/problems/maximum-ascending-subarray-sum/
 
 Question: 1800. Maximum Ascending Subarray Sum
 
