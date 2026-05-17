@@ -1,5 +1,5 @@
 /*
-LeetCode Problem: https://leetcode.com/problems/validate-stack-sequences/description/
+LeetCode Problem: https://leetcode.com/problems/validate-stack-sequences/
 
 Question: 2390. Removing Stars From a String
 
