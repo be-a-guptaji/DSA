@@ -1,5 +1,5 @@
 /*
-LeetCode Problem: https://leetcode.com/problems/sequential-digits/description/
+LeetCode Problem: https://leetcode.com/problems/sequential-digits/
 
 Question: 1291. Sequential Digits
 
