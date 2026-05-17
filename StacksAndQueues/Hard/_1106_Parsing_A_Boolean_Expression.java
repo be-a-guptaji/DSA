@@ -1,5 +1,5 @@
 /*
-LeetCode Problem: https://leetcode.com/problems/parsing-a-boolean-expression/description/
+LeetCode Problem: https://leetcode.com/problems/parsing-a-boolean-expression/
 
 Question: 1106. Parsing A Boolean Expression
 
