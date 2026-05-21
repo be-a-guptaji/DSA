@@ -96,7 +96,7 @@ class Solution {
 }
 
 public class _442_Find_All_Duplicates_in_an_Array {
-    // Main method to test countBadPairs
+    // Main method to test findDuplicates
     public static void main(String[] args) {
         int[] nums = new int[] { 4, 3, 2, 7, 8, 2, 3, 1 };
 
