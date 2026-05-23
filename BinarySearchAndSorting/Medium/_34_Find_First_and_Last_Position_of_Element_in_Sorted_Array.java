@@ -27,9 +27,9 @@ Constraints:
 -10^9 <= nums[i] <= 10^9
 nums is a non-decreasing array.
 -10^9 <= target <= 10^9
- */
+*/
 
- /*
+/*
  Approach: This problem can be solved efficiently using **binary search** since the array is sorted.
  
    - We initialize two pointers: left = 0, right = nums.length - 1
