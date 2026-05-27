@@ -70,7 +70,7 @@ package Arrays.Hard;
 
 // Solution Class
 class Solution {
-   // Method to find the number of distinct valid names for the company
+   // Method to find the smallest positive integer that is not present in nums
    public int firstMissingPositive(int[] nums) {
       // Remove the negative number to zero
       for (int i = 0; i < nums.length; i++) {
@@ -111,6 +111,6 @@ public class _41_First_Missing_Positive {
 
       long result = new Solution().firstMissingPositive(nums);
 
-      System.out.println("The number of distinct valid names for the company is : " + result);
+      System.out.println("The smallest positive integer that is not present in nums is : " + result);
    }
 }
