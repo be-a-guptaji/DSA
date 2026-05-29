@@ -99,7 +99,7 @@ class Solution {
 public class _1984_Minimum_Difference_Between_Highest_and_Lowest_of_K_Scores {
     // Main method to test the minimumDifference
     public static void main(String[] args) {
-        int[] nums = new int[] {};
+        int[] nums = new int[] { 9, 4, 1, 7 };
         int k = 3;
 
         int result = new Solution().minimumDifference(nums, k);
