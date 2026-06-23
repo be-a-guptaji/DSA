@@ -1,5 +1,5 @@
 /*
-LeetCode Problem: https://leetcode.com/problems/add-two-numbers-ii/description/
+LeetCode Problem: https://leetcode.com/problems/add-two-numbers-ii/
 
 Question: 445. Add Two Numbers II
 
