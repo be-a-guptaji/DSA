@@ -153,22 +153,6 @@ class Solution {
   }
 }
 
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- * int val;
- * TreeNode left;
- * TreeNode right;
- * TreeNode() {}
- * TreeNode(int val) { this.val = val; }
- * TreeNode(int val, TreeNode left, TreeNode right) {
- * this.val = val;
- * this.left = left;
- * this.right = right;
- * }
- * }
- */
-
 // Main Class
 public class _1443_Minimum_Time_to_Collect_All_Apples_in_a_Tree {
   // Main method to test minTime
