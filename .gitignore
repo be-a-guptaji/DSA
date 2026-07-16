@@ -1,5 +1,4 @@
 # To ignore compiled Java class files
-
 *.class
-
+.vscode
 *.pdf
