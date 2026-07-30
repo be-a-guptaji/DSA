@@ -229,7 +229,5 @@ public class _173_Binary_Search_Tree_Iterator {
         }
       }
     }
-
-    System.out.println("The trimmed binary search tree is : " + result);
   }
 }
