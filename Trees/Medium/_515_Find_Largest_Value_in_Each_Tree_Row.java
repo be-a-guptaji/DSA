@@ -81,7 +81,7 @@ import java.util.Queue;
 
 // Solution Class 
 class Solution {
-  // Method to find the root of the modified tree
+  // Method to find an array of the largest value in each row of the tree
   public ArrayList<Integer> largestValues(TreeNode root) {
     // Initialize the array list
     ArrayList<Integer> maxList = new ArrayList<>();
@@ -191,6 +191,6 @@ public class _515_Find_Largest_Value_in_Each_Tree_Row {
 
     ArrayList<Integer> result = new Solution().largestValues(root);
 
-    System.out.println("The root of the modified tree is : " + result);
+    System.out.println("An array of the largest value in each row of the tree  is : " + result);
   }
 }
