@@ -191,6 +191,6 @@ public class _515_Find_Largest_Value_in_Each_Tree_Row {
 
     ArrayList<Integer> result = new Solution().largestValues(root);
 
-    System.out.println("An array of the largest value in each row of the tree  is : " + result);
+    System.out.println("An array of the largest value in each row of the tree is : " + result);
   }
 }
