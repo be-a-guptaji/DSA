@@ -93,7 +93,7 @@ Result:
   tree matching the given pre-order traversal.
 */
 
-package Trees.Medium;
+package Trees.Hard;
 
 import java.util.LinkedList;
 import java.util.Queue;
