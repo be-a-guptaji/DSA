@@ -97,7 +97,7 @@ class Solution {
 
 // Main Class
 public class _3042_Count_Prefix_and_Suffix_Pairs_I {
-  // Main method to test insertionSortList
+  // Main method to test countPrefixSuffixPairs
   public static void main(String[] args) {
     String[] words = new String[] { "pa", "papa", "ma", "mama" };
 
