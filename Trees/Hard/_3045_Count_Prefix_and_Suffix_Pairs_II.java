@@ -38,10 +38,10 @@ Explanation: In this example, the only valid index pair is i = 0 and j = 1, and 
 Therefore, the answer is 0.
 
 Constraints:
-    1 <= words.length <= 105^
-    1 <= words[i].length <= 105^
+    1 <= words.length <= 10^5
+    1 <= words[i].length <= 10^5
     words[i] consists only of lowercase English letters.
-    The sum of the lengths of all words[i] does not exceed 5 * 105^.
+    The sum of the lengths of all words[i] does not exceed 5 * 10^5.
 */
 
 /*
