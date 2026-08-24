@@ -57,6 +57,7 @@ After the loop, the first `index` elements in the array are the unique ones.
 Time Complexity: O(n) — we iterate through the array once.
 Space Complexity: O(1) — the algorithm uses constant extra space.
  */
+
 package TwoPointersAndSlidingWindow.Easy;
 
 public class _26_Remove_Duplicates_from_Sorted_Array {
