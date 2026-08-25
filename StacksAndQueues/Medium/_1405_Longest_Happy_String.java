@@ -96,7 +96,6 @@ package StacksAndQueues.Medium;
 
 // Solution Class
 class Solution {
-
   // Method to construct the longest possible happy string
   public String longestDiverseString(int a, int b, int c) {
 
