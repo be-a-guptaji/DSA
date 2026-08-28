@@ -52,14 +52,11 @@ public class _121_Best_Time_to_Buy_and_Sell_Stock {
             if (price < minPrice) {
                 minPrice = price;
             }
-            // Calculate profit if selling at the current price
-            int profit = price - minPrice;
 
-            // Update maxProfit if the calculated profit is higher
-            if (profit > maxProfit) {
-                maxProfit = profit;
-            }
+            // Update the max profit
+            maxProfit = Math.max(maxProfit, price - minPrice);
         }
+
         // Return the maximum profit
         return maxProfit;
     }
