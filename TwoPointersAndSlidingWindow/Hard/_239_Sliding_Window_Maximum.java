@@ -31,7 +31,7 @@ Constraints:
 1 <= k <= nums.length
  */
 
- /*
+/*
 Approach: This approach maintains the current maximum and its index while sliding the window.
 - It avoids unnecessary full rescans of the window unless the current max falls outside the new window.
 - It tries to update the max using just the new incoming value (or left boundary) when possible.
@@ -39,7 +39,8 @@ Approach: This approach maintains the current maximum and its index while slidin
 
 Time Complexity: O(n * k)
 Space Complexity: O(1)
- */
+*/
+
 package TwoPointersAndSlidingWindow.Hard;
 
 import java.util.Arrays;
@@ -87,7 +88,8 @@ public class _239_Sliding_Window_Maximum {
                 }
             } // Case 2: current max has slid out of the window
             else {
-                // Try to avoid full re-scan by checking if new or starting element is a good candidate
+                // Try to avoid full re-scan by checking if new or starting element is a good
+                // candidate
                 if (nums[end] >= maxValue - 1) {
                     maxValue = nums[end];
                     index = end;
@@ -113,13 +115,13 @@ public class _239_Sliding_Window_Maximum {
             result[i] = maxValue;
         }
 
-        //Return the result
+        // Return the result
         return result;
     }
 
     // Main method to test maxSlidingWindow
     public static void main(String[] args) {
-        int[] nums = {1, 3, -1, -3, 5, 3, 6, 7};
+        int[] nums = { 1, 3, -1, -3, 5, 3, 6, 7 };
         int k = 3;
 
         int[] result = maxSlidingWindow(nums, k);
