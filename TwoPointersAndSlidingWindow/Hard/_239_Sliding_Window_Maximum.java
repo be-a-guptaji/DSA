@@ -46,7 +46,6 @@ package TwoPointersAndSlidingWindow.Hard;
 import java.util.Arrays;
 
 public class _239_Sliding_Window_Maximum {
-
     // Method to find the maximum in each sliding window
     public static int[] maxSlidingWindow(int[] nums, int k) {
         // Special case: if window size is 1, each element is the max of its own window
