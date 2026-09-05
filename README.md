@@ -1,4 +1,3 @@
-
 # DSA - Data Structures and Algorithms
 
 ## 📖 About This Project
@@ -80,7 +79,7 @@ DSA:
 ├───Maths
 │   ├───Easy
 │   └───Medium
-├───StacksAndQueues
+├───StacksQueuesAndHeaps
 │   ├───Easy
 │   ├───Hard
 │   └───Medium
@@ -125,7 +124,7 @@ Each Java file in this repository follows a clear and standardized structure to 
 
 ## 📝 Example of a Java File
 
-Here’s an example of a Java file for the problem *Two Sum* from LeetCode:
+Here’s an example of a Java file for the problem _Two Sum_ from LeetCode:
 
 ```java
 /*
@@ -150,12 +149,12 @@ Constraints:
 */
 
  /*
- Approach: 
+ Approach:
  We solve this problem using a HashMap to store the numbers and their indices.
  We iterate through the array and check if the complement of the current number exists in the HashMap.
  If it does, we return the indices of the current number and the complement.
  If the complement does not exist, we add the current number to the HashMap with its index as the value.
- 
+
  Time Complexity: O(n), where n is the number of elements in the array.
  Space Complexity: O(n), where n is the number of elements in the array.
  */

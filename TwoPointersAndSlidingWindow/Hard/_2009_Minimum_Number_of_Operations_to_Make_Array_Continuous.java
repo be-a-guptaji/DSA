@@ -126,6 +126,8 @@ package TwoPointersAndSlidingWindow.Hard;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
+import StacksQueuesAndHeaps.Hard.Solution;
+
 // Solution Class
 class Solution {
   // Method to find the minimum number of operations to make nums continuous
