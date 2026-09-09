@@ -120,7 +120,7 @@ public class _733_Flood_Fill {
     int sc = 1;
     int color = 2;
 
-    int[][] result = new Solution1().floodFill(image, sr, sc, color);
+    int[][] result = new Solution().floodFill(image, sr, sc, color);
 
     System.out.println("The modified image after performing the flood fill is : " + Arrays.deepToString(result));
   }
