@@ -26,7 +26,7 @@ nums[i] is either 0, 1, or 2.
 Follow up: Could you come up with a one-pass algorithm using only constant extra space?
  */
 
- /*
+/*
 Approach: Dutch National Flag Algorithm (One-pass In-place)
 
 Key Idea:
@@ -42,13 +42,13 @@ Rules:
 
 Time Complexity: O(n)
 Space Complexity: O(1)
- */
+*/
+
 package TwoPointersAndSlidingWindow.Medium;
 
 import java.util.Arrays;
 
 public class _75_Sort_Colors {
-
     // Method to find the maximum consecutive ones by replacing k 0's
     public static void sortColors(int[] nums) {
         // Initialize the array for tracking the variable
@@ -75,7 +75,7 @@ public class _75_Sort_Colors {
 
     // Main method to test sortColors
     public static void main(String[] args) {
-        int[] nums = {2, 0, 2, 1, 1, 0};
+        int[] nums = { 2, 0, 2, 1, 1, 0 };
 
         sortColors(nums);
 
