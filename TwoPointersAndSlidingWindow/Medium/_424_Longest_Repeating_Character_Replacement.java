@@ -41,6 +41,7 @@ Key Idea:
 Time Complexity: O(n), where n = length of the string.
 Space Complexity: O(1)
 */
+
 package TwoPointersAndSlidingWindow.Medium;
 
 public class _424_Longest_Repeating_Character_Replacement {
