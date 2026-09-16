@@ -27,24 +27,26 @@ Constraints:
 Follow up: If you have figured out the O(n) solution, try coding another solution of which the time complexity is O(n log(n)).
  */
 
- /*
+/*
 Approach:This solution uses the sliding window technique.
 
 Key Idea:
 - Start with two pointers: `left` and `right` that define the window.
 - Expand the window by moving `right` and keep track of the sum of the current window.
 - Once the current window sum becomes >= target:
-  - Try to shrink the window from the left to find the minimum possible size.
-  - Update the minimum length found so far.
+ - Try to shrink the window from the left to find the minimum possible size.
+ - Update the minimum length found so far.
 
 Time Complexity: O(n), where n = length of the input array.
 Space Complexity: O(1), since no extra space proportional to input size is used.
- */
+*/
+
 package TwoPointersAndSlidingWindow.Medium;
 
 public class _209_Minimum_Size_Subarray_Sum {
 
-    // Method to find the minimum length of the subarray sum greater than or equal to the target
+    // Method to find the minimum length of the subarray sum greater than or equal
+    // to the target
     public static int minSubArrayLen(int target, int[] nums) {
         // Initialize the variable
         int left = 0, minimumSubArrayLen = Integer.MAX_VALUE, currentSum = 0;
@@ -68,7 +70,7 @@ public class _209_Minimum_Size_Subarray_Sum {
     // Main method to test minSubArrayLen
     public static void main(String[] args) {
         int target = 7;
-        int[] nums = {2, 3, 1, 2, 4, 3};
+        int[] nums = { 2, 3, 1, 2, 4, 3 };
 
         int result = minSubArrayLen(target, nums);
 
