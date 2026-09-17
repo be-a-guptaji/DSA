@@ -22,30 +22,31 @@ Constraints:
 s1 and s2 consist of lowercase English letters.
  */
 
- /*
- Approach:This problem is best solved using the **sliding window** technique with frequency counting.
- 
- - We maintain two frequency arrays (size 26) to track:
-  1. The count of characters in the string `s1`.
-  2. The count of characters in the current sliding window of size `s1.length()` in `s2`.
- 
- - We initialize both arrays and compare them.
- - Then we slide the window one character at a time by:
-    - Adding the next character to the window
-    - Removing the oldest character from the window
-    - Comparing the two frequency arrays
- 
- - If they match at any point, we return true.
- 
- This approach ensures we efficiently check each window in linear time.
- 
- Time Complexity: O(n)
- - where `n` is the length of `s2`. Each character is visited only once during the sliding window.
- - Array comparison (`Arrays.equals`) is O(26) per comparison, which is constant time — treated as O(1).
- 
- Space Complexity: O(1)
- - We use two fixed-size arrays (size 26), regardless of the input size.
- */
+/*
+Approach:This problem is best solved using the **sliding window** technique with frequency counting.
+
+- We maintain two frequency arrays (size 26) to track:
+ 1. The count of characters in the string `s1`.
+ 2. The count of characters in the current sliding window of size `s1.length()` in `s2`.
+
+- We initialize both arrays and compare them.
+- Then we slide the window one character at a time by:
+   - Adding the next character to the window
+   - Removing the oldest character from the window
+   - Comparing the two frequency arrays
+
+- If they match at any point, we return true.
+
+This approach ensures we efficiently check each window in linear time.
+
+Time Complexity: O(n)
+- where `n` is the length of `s2`. Each character is visited only once during the sliding window.
+- Array comparison (`Arrays.equals`) is O(26) per comparison, which is constant time — treated as O(1).
+
+Space Complexity: O(1)
+- We use two fixed-size arrays (size 26), regardless of the input size.
+*/
+
 package TwoPointersAndSlidingWindow.Medium;
 
 import java.util.Arrays;
