@@ -22,9 +22,9 @@ Constraints:
 1 <= nums.length <= 10^5
 nums[i] is either 0 or 1.
 0 <= k <= nums.length
- */
+*/
 
- /*
+/*
 Approach: Sliding Window
 
 Key Idea:
@@ -35,7 +35,8 @@ Key Idea:
 
 Time Complexity: O(n), where n = length of the array.
 Space Complexity: O(1)
- */
+*/
+
 package TwoPointersAndSlidingWindow.Medium;
 
 public class _1004_Max_Consecutive_Ones_III {
