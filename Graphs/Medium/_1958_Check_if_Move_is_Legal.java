@@ -88,8 +88,7 @@ package Graphs.Medium;
 class Solution {
   // Initialize the direction matrix
   private static final int[][] direction = {
-      { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 },
-      { 1, 1 }, { 1, -1 }, { -1, 1 }, { -1, -1 }
+      { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 }, { 1, 1 }, { 1, -1 }, { -1, 1 }, { -1, -1 }
   };
 
   // Method to find the good line
