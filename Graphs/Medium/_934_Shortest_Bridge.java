@@ -208,7 +208,7 @@ class Solution {
 }
 
 public class _934_Shortest_Bridge {
-  // Main method to test checkMove
+  // Main method to test shortestBridge
   public static void main(String[] args) {
     int[][] grid = new int[][] {
         { 1, 1, 1, 1, 1 },
