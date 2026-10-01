@@ -233,6 +233,7 @@ class Solution {
 
     // Reset the Integer.MAX_VALUE
     for (int i = 0; i < n; i++) {
+      // If Integer.MAX_VALUE then turn the value to -1
       if (result[i] == Integer.MAX_VALUE) {
         result[i] = -1;
       }
